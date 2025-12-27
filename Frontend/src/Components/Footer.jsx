@@ -59,7 +59,7 @@ export default function Footer({
             <div className="space-y-3 ">
               <div className="flex items-center gap-2">
                 <MapPin size={18} className="text-accent shrink-0" />
-                <span>Yelahanka , Bangalore Karnataka</span>
+                <span>Yelahanka , Bangalore Karnataka </span>
               </div>
               <div className="flex items-center gap-2">
                 <Phone size={18} className="text-accent shrink-0" />
