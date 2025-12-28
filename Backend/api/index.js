@@ -24,6 +24,11 @@ app.use("/api/sankalpa-payments", sankaplapaymentRoutes);
 app.use("/api/sankalpa-bookings", sankaplabookingRoutes);
 app.use("/api/leads", leadRoutes);
 
+app.get("/", (req, res) => {
+  res.send("Backend API Running 🚀");
+});
+
+
 app.get("/api/health", (req, res) => {
   res.json({ status: "OK" });
 });
