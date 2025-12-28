@@ -321,11 +321,11 @@ const amountToPay = amountBase + gst;
             >
               <div className="flex h-full flex-col overflow-hidden rounded-xl bg-white shadow-lg transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl">
                 {/* Image */}
-                <div className="relative h-56 overflow-hidden">
+                <div className="relative h-70 overflow-hidden">
                   <img
                     src={pkg.image}
                     alt={pkg.destination}
-                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    className="h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-110"
                   />
 
                   <div className="absolute inset-0 bg-linear-to-t from-[#00000089] via-transparent to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
@@ -495,8 +495,8 @@ const amountToPay = amountBase + gst;
         </div>
 
         {showForm && (
-          <div className="fixed inset-0 bg-black/30 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-            <div className="bg-white mt-17 h-150 overflow-scroll  no-scrollbar rounded-2xl w-full max-w-2xl  shadow-2xl relative">
+          <div className="fixed inset-0 bg-black/30 backdrop-blur-sm flex items-center justify-center z-100 p-4">
+            <div className="bg-white  h-150 overflow-scroll  no-scrollbar rounded-2xl w-full max-w-2xl  shadow-2xl relative">
               <button
                 onClick={closeForm}
                 className="absolute right-4 top-4 text-white cursor-pointer"

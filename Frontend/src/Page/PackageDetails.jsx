@@ -132,12 +132,12 @@ export default function PackageDetails() {
     <div className="min-h-screen bg-linear-to-b from-white to-slate-50">
       {/* Header */}
       <header className="container m-auto w-full sm:rounded-xl lg:rounded-full mt-2 bg-[#ffffff91] backdrop-blur-md shadow-lg sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex flex-wrap items-center gap-5">
+        <div className="max-w-7xl mx-auto px-6 py-4 lg:flex flex-wrap  items-center gap-5">
           <Link to="/" className="flex items-center gap-2 text-[#3F2455] font-semibold">
             <ArrowLeft size={18} />
             Back
           </Link>
-          <h1 className="flex-1 text-center text-xl whitespace-nowrap font-bold">{pkg.title}</h1>
+          <h1 className="flex-1 text-center lg:text-xl mt-2 lg:mt-0 text-xs whitespace-nowrap font-bold">{pkg.title}</h1>
           <div className="w-20" />
         </div>
       </header>

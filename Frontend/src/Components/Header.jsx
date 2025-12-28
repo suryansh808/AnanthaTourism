@@ -35,7 +35,7 @@ const headerRef = useRef(null)
 
 
   return (
-    <header ref={headerRef} className="fixed top-0 left-0 right-0 z-100">
+    <header ref={headerRef} className="fixed top-0 left-0 right-0 z-99">
 
       {/* Main Header */}
       <div className=" container m-auto w-full sm:rounded-xl lg:rounded-2xl mt-2 bg-[#ffffff91] backdrop-blur-md shadow-lg">
