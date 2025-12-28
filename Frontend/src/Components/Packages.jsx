@@ -471,7 +471,7 @@ const amountToPay = amountBase + gst;
                       {pkg.id !== 0 ? (
                         <button
                           onClick={() => navigate(`/page/${pkg.id}`)}
-                          className="flex-1 rounded-lg border border-[#3F2455] px-4 py-2 text-center font-semibold text-[#3F2455] transition hover:bg-blue-600/10"
+                          className="flex-1 rounded-lg border cursor-pointer border-[#3F2455] px-4 py-2 text-center font-semibold text-[#3F2455] transition hover:bg-blue-600/10"
                         >
                           View Details
                         </button>
@@ -481,7 +481,7 @@ const amountToPay = amountBase + gst;
                       {pkg.id === 0 ? (
                         <button
                           onClick={openForm}
-                          className="flex-1 rounded-lg bg-[#3F2455] px-4 py-2 font-bold text-white shadow-md transition-all hover:scale-105 hover:bg-[#724696] hover:shadow-lg"
+                          className="flex-1 rounded-lg cursor-pointer bg-[#3F2455] px-4 py-2 font-bold text-white shadow-md transition-all hover:scale-105 hover:bg-[#724696] hover:shadow-lg"
                         >
                           Book Now
                         </button>
@@ -516,6 +516,7 @@ const amountToPay = amountBase + gst;
 
               <form onSubmit={handleSubmit} className="p-2 space-y-2">
                 <input
+                  type="text"
                   name="fullName"
                   placeholder="Full Name"
                   required
@@ -525,6 +526,7 @@ const amountToPay = amountBase + gst;
                 />
 
                 <input
+                  type="number"
                   name="phone"
                   placeholder="Phone"
                   required
@@ -533,6 +535,7 @@ const amountToPay = amountBase + gst;
                   className="w-full border rounded-lg px-4 py-3"
                 />
                 <input
+                 type="text"
                   name="gotra"
                   placeholder="Gotra (Optional)"
                   value={formData.gotra}
@@ -541,6 +544,7 @@ const amountToPay = amountBase + gst;
                 />
 
                 <input
+                  type="text"
                   name="guardianName"
                   placeholder="Father’s / Husband’s Name"
                   value={formData.guardianName}
@@ -564,6 +568,7 @@ const amountToPay = amountBase + gst;
                   </option>
                 </select>
                 <textarea
+                  type="text"
                   name="purpose"
                   placeholder="Purpose of Sankalpa Puja"
                   required

@@ -9,6 +9,7 @@ import bookingRoutes from "./routes/bookingRoutes.js";
 import paymentRoutes from "./routes/paymentRoutes.js";
 import sankaplapaymentRoutes from "./routes/sankalpaPaymentRoutes.js";
 import sankaplabookingRoutes from "./routes/sankalpaBookingRoutes.js";
+import leadRoutes from "./routes/leadRoutes.js";
 
 
 connectDB();
@@ -22,6 +23,7 @@ app.use("/api/bookings", bookingRoutes);
 app.use("/api/payments", paymentRoutes); 
 app.use("/api/sankalpa-payments", sankaplapaymentRoutes);
 app.use("/api/sankalpa-bookings", sankaplabookingRoutes);
+app.use("/api/leads", leadRoutes);
 
 app.get("/", (req, res) => {
   res.send("API Running");

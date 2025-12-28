@@ -13,7 +13,7 @@ const router = express.Router();
  * CREATE ORDER
  */
 router.post("/create-order", async (req, res) => {
-  console.log("Razorpay Key:", process.env.RAZORPAY_KEY_ID);
+  // console.log("Razorpay Key:", process.env.RAZORPAY_KEY_ID);
 
   try {
     const { amount } = req.body;

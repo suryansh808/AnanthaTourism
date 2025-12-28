@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { ChevronRight, Sparkles } from 'lucide-react';
+import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import { createLead } from "../api/leads";
+import 'react-toastify/dist/ReactToastify.css';
 import img1 from '../assets/kumbh/1.png';
 import img2 from '../assets/kumbh/2.jpg';
 import img3 from '../assets/kumbh/3.jpg';
@@ -8,6 +11,38 @@ import img4 from '../assets/kumbh/4.png';
 export default function Hero() {
   const [currentSlide, setCurrentSlide] = useState(0);
 
+  const [formData, setFormData] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    interests: ""
+  });
+
+  const handleChange = (e) => {
+    setFormData({ 
+      ...formData,
+      [e.target.name]: e.target.value 
+    });
+  };
+
+ const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  try {
+    await createLead(formData);
+    toast.success("Your enquiry has been successfully logged. We’ll revert ASAP.");
+
+    setFormData({
+      name: "",
+      phone: "",
+      email: "",
+      interests: ""
+    });
+
+  } catch (err) {
+    toast.error("Submission failed. Please retry or escalate.");
+  }
+};
 const slides = [
   {
     title: 'Divine Convergence',
@@ -120,10 +155,13 @@ const slides = [
         Plan Your Spiritual Journey
       </h3>
 
-      <form className="space-y-5">
+      <form onSubmit={handleSubmit} className="space-y-5">
         <div>
           <input
             type="text"
+            name="name"
+            value={formData.name} onChange={handleChange}
+             required
             className="w-full px-4 py-3 rounded-xl bg-white/70 border border-white/30 text-black placeholder-black focus:outline-none focus:ring-2 focus:ring-amber-500"
             placeholder="Enter your name"
           />
@@ -132,6 +170,9 @@ const slides = [
         <div>
           <input
             type="tel"
+            name="phone"
+             value={formData.phone} onChange={handleChange}
+            required
             className="w-full px-4 py-3 rounded-xl bg-white/70 border border-white/30 text-black placeholder-black focus:outline-none focus:ring-2 focus:ring-amber-500"
             placeholder="Enter your phone"
           />
@@ -140,6 +181,9 @@ const slides = [
         <div>
           <input
             type="email"
+            name="email"
+            value={formData.email} onChange={handleChange}
+            required
             className="w-full px-4 py-3 rounded-xl bg-white/70 border border-white/30 text-black placeholder-black focus:outline-none focus:ring-2 focus:ring-amber-500"
             placeholder="Enter your email"
           />
@@ -147,18 +191,22 @@ const slides = [
          <div>
           <textarea
             type="text"
+               value={formData.interests}
+             onChange={handleChange}
+            name="interests"
+            required
             className="w-full resize-none px-4 py-3 rounded-xl bg-white/70 border border-white/30 text-black placeholder-black focus:outline-none focus:ring-2 focus:ring-amber-500"
             placeholder="Your travel interests"
           />
         </div>
         <button
           type="submit"
-          className="w-full py-3 rounded-xl bg-amber-600 hover:bg-amber-500 text-white font-semibold transition-all hover:scale-[1.02]"
+          className="w-full py-3 cursor-pointer rounded-xl bg-amber-600 hover:bg-amber-500 text-white font-semibold transition-all hover:scale-[1.02]"
         >
           Submit Interest
         </button>
       </form>
-
+      <ToastContainer position="top-center" />
       <p className="text-gray-300 text-xs mt-4">
         We’ll circle back with a curated itinerary tailored to your needs.
       </p>

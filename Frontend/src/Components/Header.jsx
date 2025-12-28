@@ -48,7 +48,7 @@ const headerRef = useRef(null)
 
             {/* Desktop Navigation */}
             <nav className="hidden md:block">
-              <div className="flex items-center gap-8">
+              <div className="flex items-center gap-8 ">
                 {navItems.map(({ label, action }) => (
           <button
             key={label}
@@ -57,7 +57,7 @@ const headerRef = useRef(null)
     setIsMenuOpen(false)
   }}
             type="button"
-            className="relative font-bold text-[#3F2455] transition hover:text-[#CF9F3B] group"
+            className="relative font-bold cursor-pointer text-[#3F2455] transition hover:text-[#CF9F3B] group"
           >
             {label}
             <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-linear-to-r from-[#CF9F3B] to-[#dd9c0f] transition-all duration-300 group-hover:w-full" />
