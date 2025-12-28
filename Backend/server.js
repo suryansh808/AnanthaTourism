@@ -1,10 +1,45 @@
+import express from "express";
+import cors from "cors";
 import dotenv from "dotenv";
 dotenv.config();
 
-import app from "./api/index.js";
+import connectDB from "../config/db.js";
+import bookingRoutes from "../routes/bookingRoutes.js";
+import paymentRoutes from "../routes/paymentRoutes.js";
+import sankaplapaymentRoutes from "../routes/sankalpaPaymentRoutes.js";
+import sankaplabookingRoutes from "../routes/sankalpaBookingRoutes.js";
+import leadRoutes from "../routes/leadRoutes.js";
 
-const PORT = process.env.PORT || 5000;
+connectDB();
 
-app.listen(PORT, () => {
-  console.log(`Server running locally on port ${PORT}`);
+const app = express();
+
+// app.use(cors());
+const allowedOrigins = process.env.FRONTEND_URL
+app.use(cors({
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true); 
+    } else {
+      callback(new Error('Not allowed by CORS')); 
+    }
+  },
+  credentials: true, 
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], 
+  allowedHeaders: ['Content-Type', 'Authorization'], 
+}));
+
+app.use(express.json());
+
+app.use("/api/bookings", bookingRoutes);
+app.use("/api/payments", paymentRoutes);
+app.use("/api/sankalpa-payments", sankaplapaymentRoutes);
+app.use("/api/sankalpa-bookings", sankaplabookingRoutes);
+app.use("/api/leads", leadRoutes);
+
+app.get("/", (req, res) => {
+  res.send("Backend API Running 🚀");
 });
+
+
+export default app;
