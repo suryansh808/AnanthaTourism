@@ -5,14 +5,10 @@ import logo from "../assets/logo.png"
 export default function Header({
    onHome,
   onPackages,
-  // onDestinations,
-  // onContact,
 }) {
   const navItems = [
     { label: "Home", action: onHome },
-    { label: "Packages", action: onPackages },
-    // { label: "Destinations", action: onDestinations },
-    // { label: "Contact", action: onContact },
+    { label: "Puja & Yatra Plans", action: onPackages },
   ]
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 const headerRef = useRef(null)

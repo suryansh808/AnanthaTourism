@@ -1,7 +1,15 @@
 import { useParams, Link } from "react-router-dom";
 import { useState } from "react";
-import { MapPin, Calendar, Star, Users, Check, ArrowLeft, X } from "lucide-react";
-
+import {
+  MapPin,
+  Calendar,
+  Star,
+  Users,
+  Check,
+  ArrowLeft,
+  X,
+} from "lucide-react";
+import { ToastContainer, toast } from "react-toastify";
 import { packages } from "../Components/Packages";
 import api from "../api/apiConfig";
 import { loadRazorpay } from "../utils/loadRazorpay";
@@ -39,105 +47,232 @@ export default function PackageDetails() {
   const itinerary = pkg.itinerary || [];
   const priceBase = pkg.priceFrom;
 
+  const [selectedTier, setSelectedTier] = useState(null);
+  const [basePrice, setBasePrice] = useState(priceBase);
+
   const handleForm = () => setShowForm(true);
 
   const handleInputChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
+
+  // const handleFormSubmit = async (e) => {
+  //   e.preventDefault();
+
+  //   if (!(await loadRazorpay())) {
+  //     alert("Payment gateway unavailable");
+  //     return;
+  //   }
+
+  //   const totalTravelers = Number(formData.travelers);
+  // const subTotal = priceBase * totalTravelers;
+  // const gstAmount = subTotal * 0.18;
+  // const amountWithGst = Math.round(subTotal + gstAmount);
+
+  //   try {
+  //     const { data: order } = await api.post("/payments/create-order", {
+  //       amount: amountWithGst
+  //     });
+
+  //     if (!import.meta.env.VITE_RAZORPAY_KEY_ID) {
+  //       throw new Error("Razorpay Key missing. Check Vite env configuration.");
+  //     }
+
+  //     const options = {
+  //       key: import.meta.env.VITE_RAZORPAY_KEY_ID,
+  //       amount: order.amount,
+  //       currency: "INR",
+  //       name: "Anantha Tourism",
+  //       description: pkg.title,
+  //       order_id: order.id,
+  //       prefill: {
+  //         name: formData.fullName,
+  //         email: formData.email,
+  //         contact: formData.phone
+  //       },
+  //       handler: async (response) => {
+  //         const bookingPayload = {
+  //           packageDetails: {
+  //             id: pkg.id,
+  //             title: pkg.title,
+  //             destination: pkg.destination,
+  //             duration: pkg.duration,
+  //             price: priceBase
+  //           },
+  //           customerDetails: {
+  //             fullName: formData.fullName,
+  //             email: formData.email,
+  //             phone: formData.phone,
+  //             numberOfTravelers: totalTravelers
+  //           },
+  //           totalAmount: amount
+  //         };
+
+  //         const { data } = await api.post("/payments/verify-and-book", {
+  //           ...response,
+  //           bookingData: bookingPayload
+  //         });
+
+  //         setFormData({
+  //           fullName: "",
+  //           email: "",
+  //           phone: "",
+  //           travelers: ""
+  //         });
+
+  //         if (!data.success) {
+  //           alert("Payment verification failed");
+  //           return;
+  //         }
+
+  //         alert(`Booking Confirmed\nID: ${data.bookingId}`);
+  //         setShowForm(false);
+  //       },
+  //       theme: { color: "#3F2455" }
+  //     };
+
+  //     new window.Razorpay(options).open();
+  //   } catch (err) {
+  //     console.error(err);
+  //     alert("Unable to initiate payment");
+  //   }
+  // };
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
+    if (!selectedTier) {
+      toast.error("Please select a package");
+      return;
+    }
+
     if (!(await loadRazorpay())) {
-      alert("Payment gateway unavailable");
+      toast.error("Payment gateway unavailable");
       return;
     }
 
     const totalTravelers = Number(formData.travelers);
-    const amount = priceBase * totalTravelers;
+
+    const subTotal = basePrice * totalTravelers;
+    const gstAmount = subTotal * 0.18;
+    const amountWithGst = Math.round(subTotal + gstAmount);
 
     try {
       const { data: order } = await api.post("/payments/create-order", {
-        amount
+        amount: amountWithGst,
       });
 
-      if (!import.meta.env.VITE_RAZORPAY_KEY_ID) {
-        throw new Error("Razorpay Key missing. Check Vite env configuration.");
+      const options = {
+  key: import.meta.env.VITE_RAZORPAY_KEY_ID,
+  amount: order.amount,
+  currency: "INR",
+  name: "Anantha Tourism",
+  description: `${pkg.title} — ${selectedTier.category}`,
+  order_id: order.id,
+
+  prefill: {
+    name: formData.fullName,
+    email: formData.email,
+    contact: formData.phone,
+  },
+
+  // 🟢 PAYMENT SUCCESS — VERIFIED LATER VIA API
+  handler: async function (response) {
+    try {
+      const bookingPayload = {
+        packageDetails: {
+          id: pkg.id,
+          title: pkg.title,
+          tier: selectedTier.category,
+          pricePerPerson: basePrice,
+          destination: pkg.destination,
+          duration: pkg.duration,
+        },
+        customerDetails: {
+          fullName: formData.fullName,
+          email: formData.email,
+          phone: formData.phone,
+          numberOfTravelers: totalTravelers,
+        },
+        pricing: {
+          subTotal,
+          gstAmount,
+          totalAmount: amountWithGst,
+        },
+        payment: response,
+      };
+
+      const { data } = await api.post(
+        "/payments/verify-and-book",
+        bookingPayload
+      );
+
+      if (!data.success) {
+        toast.error("Payment verification failed");
+        return;
       }
 
-      const options = {
-        key: import.meta.env.VITE_RAZORPAY_KEY_ID,
-        amount: order.amount,
-        currency: "INR",
-        name: "Anantha Living",
-        description: pkg.title,
-        order_id: order.id,
-        prefill: {
-          name: formData.fullName,
-          email: formData.email,
-          contact: formData.phone
-        },
-        handler: async (response) => {
-          const bookingPayload = {
-            packageDetails: {
-              id: pkg.id,
-              title: pkg.title,
-              destination: pkg.destination,
-              duration: pkg.duration,
-              price: priceBase
-            },
-            customerDetails: {
-              fullName: formData.fullName,
-              email: formData.email,
-              phone: formData.phone,
-              numberOfTravelers: totalTravelers
-            },
-            totalAmount: amount
-          };
+      toast.success(`Booking Confirmed 🎉 Reference: ${data.bookingId}`);
+      closeFrom();
 
-          const { data } = await api.post("/payments/verify-and-book", {
-            ...response,
-            bookingData: bookingPayload
-          });
+    } catch (err) {
+      console.error(err);
+      toast.error("Payment verification failed");
+    }
+  },
 
-          setFormData({
-            fullName: "",
-            email: "",
-            phone: "",
-            travelers: ""
-          });
+  // 🔴 PAYMENT FAILED (bank/auth/decline)
+  error: function (err) {
+    console.error("Razorpay Failure:", err);
+    toast.error("Payment failed. Please try again.");
+    closeFrom();
+  },
 
-          if (!data.success) {
-            alert("Payment verification failed");
-            return;
-          }
+  // 🚪 USER CLOSED CHECKOUT WITHOUT PAYING
+  modal: {
+    ondismiss: function () {
+      toast.info("Payment cancelled");
+      closeFrom();
+    },
+  },
 
-          alert(`Booking Confirmed\nID: ${data.bookingId}`);
-          setShowForm(false);
-        },
-        theme: { color: "#3F2455" }
-      };
+  theme: { color: "#3F2455" },
+};
+
 
       new window.Razorpay(options).open();
     } catch (err) {
       console.error(err);
-      alert("Unable to initiate payment");
+      toast.error("Unable to initiate payment");
     }
+    
+  };
+
+  const closeFrom = () => {
+    setShowForm(false);
+    setFormData({ fullName: "", email: "", phone: "", travelers: "" });
+    setSelectedTier(null);
   };
 
   return (
     <div className="min-h-screen bg-linear-to-b from-white to-slate-50">
       {/* Header */}
+       <ToastContainer position="top-center" />
       <header className="container m-auto w-full sm:rounded-xl lg:rounded-full mt-2 bg-[#ffffff91] backdrop-blur-md shadow-lg sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-6 py-4 lg:flex flex-wrap  items-center gap-5">
-          <Link to="/" className="flex items-center gap-2 text-[#3F2455] font-semibold">
+          <Link
+            to="/"
+            className="flex items-center gap-2 text-[#3F2455] font-semibold"
+          >
             <ArrowLeft size={18} />
             Back
           </Link>
-          <h1 className="flex-1 text-center lg:text-xl mt-2 lg:mt-0 text-xs whitespace-nowrap font-bold">{pkg.title}</h1>
+          <h1 className="flex-1 text-center lg:text-xl mt-2 lg:mt-0 text-xs whitespace-nowrap font-bold">
+            {pkg.title}
+          </h1>
           <div className="w-20" />
         </div>
       </header>
@@ -161,8 +296,16 @@ export default function PackageDetails() {
               <p className="text-slate-600 text-lg mb-8">{pkg.description}</p>
 
               <div className="grid grid-cols-2 md:grid-cols-3 gap-6 border-y py-8">
-                <Info icon={<Calendar />} label="Duration" value={pkg.duration} />
-                <Info icon={<MapPin />} label="Destination" value={pkg.destination} />
+                <Info
+                  icon={<Calendar />}
+                  label="Duration"
+                  value={pkg.duration}
+                />
+                <Info
+                  icon={<MapPin />}
+                  label="Destination"
+                  value={pkg.destination}
+                />
                 <Info icon={<Users />} label="Group Size" value="2–20 People" />
               </div>
 
@@ -245,8 +388,9 @@ export default function PackageDetails() {
 
           {/* Sidebar */}
           <aside className="sticky top-28 h-fit bg-[#ffffff2b] backdrop-blur-md shadow-lg rounded-xl p-8">
-
-            <p className="text-sm uppercase text-slate-500 mb-2">Starting From</p>
+            <p className="text-sm uppercase text-slate-500 mb-2">
+              Starting From
+            </p>
             <p className="text-4xl font-bold text-[#3F2455] mb-1">
               ₹{priceBase.toLocaleString("en-IN")}
             </p>
@@ -260,7 +404,10 @@ export default function PackageDetails() {
             {pkg.pricing && (
               <div className="mb-6 grid grid-cols-3 gap-2 text-center text-xs">
                 {pkg.pricing.map((t) => (
-                  <div key={t.category} className="rounded-lg border  bg-white p-2 shadow-sm">
+                  <div
+                    key={t.category}
+                    className="rounded-lg border  bg-white p-2 shadow-sm"
+                  >
                     <p className="font-semibold">{t.category}</p>
                     <p className="text-[#3F2455] font-bold">
                       ₹{t.price.toLocaleString("en-IN")}
@@ -284,9 +431,8 @@ export default function PackageDetails() {
       {showForm && (
         <div className="fixed inset-0 bg-opacity-60 bg-[#ffffff7b] backdrop-blur-sm shadow-2xl  flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-2xl w-full max-w-md shadow-2xl relative animate-fade-in">
-            
-            <button 
-              onClick={() => setShowForm(false)}
+            <button
+              onClick={() => closeFrom()}
               className="absolute top-4 right-4 cursor-pointer text-gray-400 hover:text-white transition"
             >
               <X size={24} />
@@ -301,40 +447,66 @@ export default function PackageDetails() {
             </div>
 
             <form onSubmit={handleFormSubmit}>
-              <div className="p-6">
-                <div className="space-y-4">
-
-                  <input 
+              <div className="p-3">
+                <div className="space-y-1">
+                  <input
                     type="text"
                     name="fullName"
                     value={formData.fullName}
                     onChange={handleInputChange}
                     placeholder="Enter your full name"
                     required
-                    className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-[#3F2455] transition"
+                    className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#3F2455] transition"
                   />
 
-                  <input 
+                  <input
                     type="email"
                     name="email"
                     value={formData.email}
                     onChange={handleInputChange}
                     placeholder="your.email@example.com"
                     required
-                    className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-[#3F2455] transition"
+                    className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#3F2455] transition"
                   />
 
-                  <input 
+                  <input
                     type="tel"
                     name="phone"
                     value={formData.phone}
                     onChange={handleInputChange}
                     placeholder="+91 00000 00000"
                     required
-                    className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-[#3F2455] transition"
+                    className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#3F2455] transition"
                   />
+                  <div className="space-y-3 mt-1">
+                    <p className="font-semibold text-gray-700">
+                      Select Package Type
+                    </p>
 
-                  <input 
+                    <div className="grid grid-cols-3 gap-2">
+                      {pkg.pricing.map((tier) => (
+                        <button
+                          key={tier.category}
+                          type="button"
+                          onClick={() => {
+                            setSelectedTier(tier);
+                            setBasePrice(tier.price);
+                          }}
+                          className={`border rounded-lg p-3 text-center font-semibold cursor-pointer transition 
+          ${
+            selectedTier?.category === tier.category
+              ? "bg-[#3F2455] text-white border-[#3F2455]"
+              : "bg-white text-gray-700 border-gray-300"
+          }`}
+                        >
+                          <p>{tier.category}</p>
+                          <p>₹{tier.price.toLocaleString("en-IN")}</p>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  <input
                     type="number"
                     name="travelers"
                     value={formData.travelers}
@@ -343,10 +515,10 @@ export default function PackageDetails() {
                     min="1"
                     max="20"
                     required
-                    className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-[#3F2455] transition"
+                    className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#3F2455] transition"
                   />
 
-                  {formData.travelers && (
+                  {/* {formData.travelers && (
                     <div className="bg-[#CF9F3B]/10 border border-[#CF9F3B] rounded-lg p-4">
                       <div className="flex justify-between items-center">
                         <span className="text-sm font-semibold text-gray-700">
@@ -361,17 +533,55 @@ export default function PackageDetails() {
                         {formData.travelers > 1 ? "s" : ""}
                       </p>
                     </div>
+                  )} */}
+                  {formData.travelers && selectedTier && (
+                    <div className="bg-[#CF9F3B]/10 border border-[#CF9F3B] rounded-lg p-2 space-y-1">
+                      <p className="text-sm font-semibold">
+                        Subtotal: ₹
+                        {(
+                          basePrice * Number(formData.travelers)
+                        ).toLocaleString("en-IN")}
+                      </p>
+
+                      <p className="text-sm font-semibold">
+                        GST (18%): ₹
+                        {(
+                          basePrice *
+                          Number(formData.travelers) *
+                          0.18
+                        ).toLocaleString("en-IN")}
+                      </p>
+
+                      <p className="text-md font-bold text-[#3F2455]">
+                        Total Payable: ₹
+                        {Math.round(
+                          basePrice * Number(formData.travelers) * 1.18
+                        ).toLocaleString("en-IN")}
+                      </p>
+
+                      <p className="text-xs text-gray-500">
+                        ₹{basePrice} × {formData.travelers} traveller
+                        {formData.travelers > 1 ? "s" : ""} + 18% GST
+                      </p>
+                    </div>
                   )}
                 </div>
 
-                <button 
+                <button
+                  disabled={!selectedTier || !formData.travelers}
                   type="submit"
-                  className="w-full bg-linear-to-r from-[#3F2455] to-[#5a3570] text-white font-bold py-4 rounded-lg mt-6 hover:scale-105 hover:shadow-lg transition-all duration-300"
+                  className={`w-full font-bold py-3 rounded-lg mt-2 transition
+    ${
+      !selectedTier || !formData.travelers
+        ? "bg-gray-300 text-gray-500 cursor-not-allowed"
+        : "bg-linear-to-r from-[#3F2455] cursor-pointer to-[#5a3570] text-white hover:scale-105 hover:shadow-lg"
+    }
+  `}
                 >
                   Confirm Booking
                 </button>
 
-                <p className="text-xs text-center text-gray-500 mt-4">
+                <p className="text-xs text-center text-gray-500 mt-3">
                   By booking, you agree to our terms and conditions
                 </p>
               </div>
@@ -382,10 +592,18 @@ export default function PackageDetails() {
 
       <style jsx>{`
         @keyframes fade-in {
-          from { opacity: 0; transform: scale(0.95); }
-          to { opacity: 1; transform: scale(1); }
+          from {
+            opacity: 0;
+            transform: scale(0.95);
+          }
+          to {
+            opacity: 1;
+            transform: scale(1);
+          }
         }
-        .animate-fade-in { animation: fade-in 0.3s ease-out; }
+        .animate-fade-in {
+          animation: fade-in 0.3s ease-out;
+        }
       `}</style>
     </div>
   );
@@ -396,7 +614,9 @@ function Info({ icon, label, value }) {
     <div className="flex gap-3">
       <div className="text-[#3F2455] mt-1">{icon}</div>
       <div>
-        <p className="text-xs uppercase text-slate-500 font-semibold">{label}</p>
+        <p className="text-xs uppercase text-slate-500 font-semibold">
+          {label}
+        </p>
         <p className="font-bold">{value}</p>
       </div>
     </div>

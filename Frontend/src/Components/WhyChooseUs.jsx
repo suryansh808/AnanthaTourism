@@ -3,35 +3,36 @@ import { ShieldCheck, Users, Headphones, Plane, Heart, Sparkles } from "lucide-r
 const reasons = [
   {
     icon: <Sparkles className="w-8 h-8 text-amber-500" />,
-    title: "Curated & Authentic Pilgrimage Experiences",
-    desc: "Spiritually aligned itineraries that balance devotion, culture, and comfort — never transactional, always meaningful.",
+    title: "Authentic Magh Kumbh Journeys",
+    desc: "Curated Magh Kumbh Mela 2026 itineraries that harmonize devotion, culture, and comfort  always meaningful, never transactional.",
   },
   {
     icon: <Heart className="w-8 h-8 text-amber-500" />,
-    title: "Pandit-Led Ritual & Kumbh Assistance",
-    desc: "Structured, priest-guided rituals ensuring your Sankalpa and Snan are performed with purity and precision.",
+    title: "Pandit-Led Magh Kumbh Rituals",
+    desc: "Priest-guided Sankalpa and Snan ceremonies at Triveni Sangam, conducted with purity, precision, and spiritual integrity.",
   },
   {
     icon: <Plane className="w-8 h-8 text-amber-500" />,
-    title: "End-to-End Travel Orchestration",
-    desc: "Hotels, transport, darshan, guidance, and support — we handle the logistics so you focus on the spiritual journey.",
+    title: "Seamless End-to-End Pilgrimage",
+    desc: "We orchestrate hotels, transport, guided movement, and darshan access  enabling you to focus entirely on the sacred Magh Kumbh experience.",
   },
   {
     icon: <ShieldCheck className="w-8 h-8 text-amber-500" />,
-    title: "Trust-First, Service-Led Approach",
-    desc: "Thousands of verified travellers. Transparent processes. Zero compromise on safety and comfort.",
+    title: "Trust-First Service Framework",
+    desc: "Proven track record with verified travellers. Transparent processes and zero-compromise safety across the Magh Kumbh Mela ecosystem.",
   },
   {
     icon: <Users className="w-8 h-8 text-amber-500" />,
-    title: "Senior & Family Friendly",
-    desc: "Wheelchair support, guided assistance, and structured movement — optimized for all age groups.",
+    title: "Senior & Family-Ready Pilgrimage",
+    desc: "Wheelchair assistance, guided navigation, and structured support  optimized for families and senior devotees at Magh Kumbh 2026.",
   },
   {
     icon: <Headphones className="w-8 h-8 text-amber-500" />,
-    title: "Always-On Support",
-    desc: "Proactive, responsive, and responsible — we stay with you before, during, and after the journey.",
+    title: "Always-On Pilgrim Support",
+    desc: "Dedicated assistance before, during, and after your Magh Kumbh journey  proactive, reliable, and deeply service-oriented.",
   },
 ];
+
 
 export default function WhyChooseUs() {
   return (
@@ -42,11 +43,11 @@ export default function WhyChooseUs() {
             Why Choose Us
           </p>
           <h2 className="text-3xl font-bold mt-2">
-            A Spiritual Travel Partner You Can Trust
+         Trusted for Magh Kumbh 2026 Pilgrimages
           </h2>
           <p className="mt-3 text-gray-600 max-w-3xl mx-auto">
-            We operationalize devotion with discipline — delivering premium Kumbh and
-            spiritual journeys with integrity, reliability, and cultural authenticity.
+            We deliver curated Magh Kumbh 2026 journeys with integrity, operational discipline, 
+    and cultural authenticity  ensuring a spiritually enriching, premium pilgrimage experience.
           </p>
         </div>
 

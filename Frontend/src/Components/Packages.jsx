@@ -7,6 +7,7 @@ import img3 from "../assets/pkg/3.png";
 import img4 from "../assets/pkg/4.png";
 import { createOrder, verifyPayment, saveBooking } from "../api/sankalpa";
 import { loadRazorpay } from "../utils/loadRazorpay";
+import { ToastContainer, toast } from "react-toastify";
 export const packages = [
   {
     id: 0,
@@ -210,7 +211,18 @@ export default function Packages() {
   };
 
   const openForm = () => setShowForm(true);
-  const closeForm = () => setShowForm(false);
+  const closeForm = () =>{
+    setShowForm(false)
+    setFormData({
+      fullName: "",
+      phone: "",
+      gotra: "",
+      guardianName: "",
+      purpose: "",
+      packageType: "Sankalpa Puja",
+      price: 1001, 
+    });
+  };
 
   const handleSubmit = async (e) => {
   e.preventDefault();
@@ -219,7 +231,7 @@ export default function Packages() {
   // console.log("Razorpay SDK loaded:", sdkLoaded);
 
   if (!sdkLoaded) {
-    alert("Payment failed to initialize");
+    toast.error("Payment failed to initialize");
     return;
   }
 
@@ -252,7 +264,7 @@ const amountToPay = amountBase + gst;
         const { data: verify } = await verifyPayment(response);
 
         if (!verify.success) {
-          alert("Payment verification failed");
+          toast.error("Payment verification failed");
           return;
         }
 
@@ -267,9 +279,24 @@ const amountToPay = amountBase + gst;
           },
         });
 
-        alert("Sankalpa Booking Confirmed 🙏");
+         toast.success("Sankalpa Booking Confirmed 🙏");
         closeForm();
       },
+
+        // 🔴 PAYMENT FAILED (bank/auth/decline)
+  error: function (err) {
+    console.error("Razorpay Failure:", err);
+    toast.error("Payment failed. Please try again.");
+    closeForm
+  },
+
+  // 🚪 USER CLOSED CHECKOUT WITHOUT PAYING
+  modal: {
+    ondismiss: function () {
+      toast.info("Payment cancelled");
+      closeForm();
+    },
+  },
 
       theme: { color: "#3F2455" },
     };
@@ -277,7 +304,7 @@ const amountToPay = amountBase + gst;
     new window.Razorpay(options).open();
   } catch (err) {
     console.error(err);
-    alert("Payment could not be processed");
+     toast.error("Payment could not be processed");
   }
 };
   return (
@@ -285,6 +312,7 @@ const amountToPay = amountBase + gst;
       id="packages"
       className="relative overflow-hidden bg-linear-to-b from-white via-gray-50 to-white py-24"
     >
+          <ToastContainer position="top-center" />
       {/* Decorative Blobs */}
       <div className="absolute right-0 top-0 h-96 w-96 rounded-full bg-blue-500/10 blur-3xl -z-10" />
       <div className="absolute bottom-0 left-0 h-96 w-96 rounded-full bg-yellow-400/10 blur-3xl -z-10" />
@@ -295,19 +323,17 @@ const amountToPay = amountBase + gst;
           <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-blue-600/20 bg-blue-600/10 px-4 py-2">
             <TrendingUp size={16} className="text-[#3F2455]" />
             <span className="text-sm font-semibold text-[#3F2455]">
-              Premium Kumbh Mela Experiences
+             Premium Magh Kumbh Experiences
             </span>
           </div>
 
           <h2 className="mb-6 text-4xl font-bold text-gray-900 md:text-5xl lg:text-6xl">
-            Holistic Pilgrimage{" "}
+           Spiritual Stay{" "}
             <span className="text-[#3F2455]">Experiences</span>
           </h2>
 
           <p className="mx-auto max-w-3xl text-lg leading-relaxed text-gray-600">
-            Experience a thoughtfully curated Kumbh Mela journey blending
-            devotion, cultural depth, guided rituals, and premium stays for a
-            truly transformational pilgrimage.
+            Embark on a curated Magh Kumbh 2026 journey that integrates devotion, cultural immersion, guided rituals, and premium hospitality delivering a truly transformative spiritual experience.
           </p>
         </div>
 

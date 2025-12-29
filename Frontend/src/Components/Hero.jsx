@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import { createLead } from "../api/leads";
 import 'react-toastify/dist/ReactToastify.css';
@@ -17,6 +16,7 @@ export default function Hero() {
     email: "",
     interests: ""
   });
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     setFormData({ 
@@ -27,7 +27,7 @@ export default function Hero() {
 
  const handleSubmit = async (e) => {
   e.preventDefault();
-
+  setLoading(true);
   try {
     await createLead(formData);
     toast.success("Your enquiry has been successfully logged. We’ll revert ASAP.");
@@ -38,37 +38,38 @@ export default function Hero() {
       email: "",
       interests: ""
     });
-
+    setLoading(false);
   } catch (err) {
     toast.error("Submission failed. Please retry or escalate.");
   }
 };
 const slides = [
   {
-    title: 'Divine Convergence',
+    title: 'Sacred Confluence',
     images: `${img1}`,
-    subtitle: 'Experience the world’s largest gathering of faith and devotion.',
-    accent: 'The Sacred Sangam'
+    subtitle: 'Experience Magh Kumbh 2026 at Prayagraj.',
+    accent: 'Sangam'
   },
   {
-     title: 'Shahi Snan',
+    title: 'Auspicious Snan',
     images: `${img2}`,
-    subtitle: 'Witness the powerful holy immersion of saints and akharas.',
-    accent: 'Rituals of Legacy'
+    subtitle: 'Take the holy dip on sacred days.',
+    accent: 'Purity'
   },
   {
-    title: 'Timeless Traditions',
+    title: 'Kalpavas Retreat',
     images: `${img3}`,
-    subtitle: 'Engage with living heritage, spiritual talks, and sacred rituals.',
-    accent: 'Faith • Culture • Continuity'
+    subtitle: 'Live in devotion and mindful discipline.',
+    accent: 'Devotion'
   },
   {
-    title: 'Grand Pilgrimage',
+    title: 'Cultural Harmony',
     images: `${img4}`,
-    subtitle: 'Be part of a grand pilgrimage designed for millions of seekers.',
-    accent: 'Pilgrimage Reimagined'
+    subtitle: 'Explore rituals, music, and spiritual talks.',
+    accent: 'Heritage'
   }
 ];
+
 
 
 
@@ -203,7 +204,7 @@ const slides = [
           type="submit"
           className="w-full py-3 cursor-pointer rounded-xl bg-amber-600 hover:bg-amber-500 text-white font-semibold transition-all hover:scale-[1.02]"
         >
-          Submit Interest
+          {loading ? "Submitting..." : "Submit"}
         </button>
       </form>
       <ToastContainer position="top-center" />

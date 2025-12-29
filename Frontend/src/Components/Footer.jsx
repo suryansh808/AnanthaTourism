@@ -94,7 +94,7 @@ export default function Footer({
       
       {(showPrivacy || showTerms) && (
         <div
-          className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50"
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-100"
           onClick={() => {
             setShowPrivacy(false)
             setShowTerms(false)
@@ -120,49 +120,112 @@ export default function Footer({
 
             <div className="px-6 py-4 overflow-y-scroll no-scrollbar max-h-[65vh] leading-relaxed text-sm">
               {showPrivacy && (
-                <>
-                  <p className="mb-3">
-                    We are committed to safeguarding your personal information and
-                    ensuring responsible usage at every interaction touchpoint.
-                  </p>
-                  <p className="mb-3">
-                    Data collected may include your name, contact details, booking
-                    preferences, and communication records. This data is utilised solely
-                    to deliver seamless service delivery and traveller support.
-                  </p>
-                  <p className="mb-3">
-                    We do not trade, sell, or misuse customer data. Access is restricted
-                    to authorised teams on a need-to-know basis.
-                  </p>
-                  <p>
-                    By engaging with our platform and services, you consent to this
-                    responsible data-handling framework.
-                  </p>
-                </>
-              )}
+  <>
+    <p className="mb-3">
+      We are committed to protecting your privacy and maintaining the highest
+      standards of data security across all interactions on our platform.
+      Personal information collected may include your name, contact details,
+      communication records, booking preferences, and transactional information
+      shared during the payment process.
+    </p>
 
-              {showTerms && (
-                <>
-                  <p className="mb-3">
-                    All bookings are governed by our commercial operating framework.
-                    Pricing, inclusions, exclusions, and cancellation policies will be
-                    shared transparently at the time of booking.
-                  </p>
-                  <p className="mb-3">
-                    Customers are expected to review itinerary details, documentation
-                    requirements, and payment milestones before confirming travel.
-                  </p>
-                  <p className="mb-3">
-                    Operational changes arising from weather, religious schedules, or
-                    regulatory directives may require on-ground adjustments. Our team
-                    will endeavour to minimise disruption and provide alternatives where
-                    feasible.
-                  </p>
-                  <p>
-                    Proceeding with a booking confirms your acceptance of these terms.
-                  </p>
-                </>
-              )}
+    <p className="mb-3">
+      This information is collected solely for the purpose of booking
+      management, traveller assistance, service delivery, compliance, payment
+      processing, and customer support. We do not sell, rent, or misuse your
+      information for any unauthorised activity.
+    </p>
+
+    <p className="mb-3">
+      Payments on our platform are processed securely through our payment
+      partner Razorpay. During the transaction, certain required information may
+      be shared with Razorpay such as your name, contact number, email address,
+      and transaction details for the purpose of completing and validating the
+      payment. Razorpay may also collect device, network, and payment-related
+      metadata as part of their fraud-prevention & security framework.
+    </p>
+
+    <p className="mb-3">
+      All sensitive data is encrypted and handled through secure, PCI-DSS-compliant
+      infrastructure. We do not store your card details on our servers at any
+      point in time.
+    </p>
+
+    <p className="mb-3">
+      Access to customer information is restricted to authorised personnel only,
+      strictly on a need-to-know basis, and governed by internal controls and
+      confidentiality protocols.
+    </p>
+
+    <p className="mb-3">
+      By engaging with our website, submitting a booking request, or completing
+      a transaction, you provide consent for the lawful collection and secure
+      processing of your information in line with this privacy framework.
+    </p>
+
+    <p>
+      For any clarification, data-access request, or privacy-related concern,
+      you may reach out to our support team at:
+      <br />
+      <strong>support@ananthatourism.com</strong>
+    </p>
+  </>
+)}
+
+
+           {showTerms && (
+  <>
+    <p className="mb-3">
+      All bookings, digital service requests, and payment transactions made
+      through our platform are governed by our commercial service framework.
+      Pricing, package inclusions, exclusions, government taxes, and applicable
+      cancellation rules will be communicated transparently prior to confirming
+      a booking or initiating payment.
+    </p>
+
+    <p className="mb-3">
+      Customers are responsible for reviewing itinerary details, eligibility
+      requirements, personal documentation, health & travel advisories, and
+      payment milestones prior to confirming participation in any pilgrimage,
+      ritual service, or travel experience.
+    </p>
+
+    <p className="mb-3">
+      Payments processed via our website are securely handled through our
+      authorised payment partner Razorpay. By proceeding with a payment, you
+      acknowledge and agree that Razorpay may securely process transaction
+      information for authentication, settlement, fraud-prevention, and
+      compliance purposes. We do not store card data on our servers.
+    </p>
+
+    <p className="mb-3">
+      Operational adjustments may occasionally be required due to weather
+      conditions, regulatory advisories, religious calendars, crowd-control
+      mandates, security guidelines, or logistical constraints. Where this
+      occurs, our team will endeavour to minimise service disruption and
+      structure commercially reasonable alternatives.
+    </p>
+
+    <p className="mb-3">
+      In the event of cancellations, amendments, or refunds, applicable charges
+      and eligibility will be governed strictly as per the published policy at
+      the time of booking. Refunds, if approved, will be processed through the
+      original mode of payment in accordance with banking timelines.
+    </p>
+
+    <p className="mb-3">
+      Misuse of the platform, fraudulent activity, chargeback abuse, or breach
+      of terms may result in cancellation of services without liability.
+    </p>
+
+    <p>
+      By accessing our platform, submitting a booking request, or completing a
+      payment, you confirm your acceptance of these Terms & Conditions and
+      agree to abide by the policies that govern our service delivery model.
+    </p>
+  </>
+)}
+
             </div>
           </div>
         </div>
