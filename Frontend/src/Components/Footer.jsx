@@ -15,7 +15,11 @@ export default function Footer({
     }
   }, [showPrivacy, showTerms])
   return (
-    <footer className="bg-primary py-5">
+    <footer
+      // style={{
+      //   background: "radial-gradient(circle, #3F2455, #000 75%)",
+      // }} 
+     className="lg:rounded-t-[100px] rounded-t-[50px] border border-gray-100 py-5">
       <div className="max-w-7xl  mx-auto px-4 sm:px-6 lg:px-5">
         {/* Top Section */}
         <div className="flex flex-wrap  justify-between w-full  md:grid-cols-4 gap-8 mb-12">

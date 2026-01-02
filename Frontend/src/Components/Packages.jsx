@@ -1,13 +1,20 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { MapPin, Calendar, Star, TrendingUp } from "lucide-react";
 import img1 from "../assets/pkg/1.png";
+import img1a from "../assets/pkg/1a.png";
 import img2 from "../assets/pkg/2.png";
+import img2a from "../assets/pkg/2a.png";
 import img3 from "../assets/pkg/3.png";
+import img3a from "../assets/pkg/3a.png";
+import img3b from "../assets/pkg/3b.png";
 import img4 from "../assets/pkg/4.png";
+import img4a from "../assets/pkg/4a.png";
+import img4b from "../assets/pkg/4b.png";
 import { createOrder, verifyPayment, saveBooking } from "../api/sankalpa";
 import { loadRazorpay } from "../utils/loadRazorpay";
 import { ToastContainer, toast } from "react-toastify";
+
 export const packages = [
   {
     id: 0,
@@ -15,13 +22,13 @@ export const packages = [
     destination: "Prayagraj • Online Sankalpa Support",
     duration: "1 Day Ritual Experience",
     description:
-      "A spiritually guided Sankalpa Puja curated to help devotees offer their sacred prayers and intentions with authenticity and devotion. This experience includes priest-led rituals and prayer offerings conducted with care. (Content to be further enriched.)",
+      "A spiritually guided Sankalpa Puja curated to help devotees offer their sacred prayers and intentions with authenticity and devotion. This experience includes priest-led rituals and prayer offerings conducted with care.",
     priceFrom: 1001,
     currency: "INR",
     rating: 5.0,
     reviews: 128,
     flightIncluded: false,
-    image: `${img4}`, // update your image ref as needed
+    image: [`${img4}`, `${img4a}`, `${img4b}`],
 
     usps: [
       "Pandit-Led Ritual Experience",
@@ -46,17 +53,17 @@ export const packages = [
 
   {
     id: 1,
-    title: "Kumbh Mela Yatra – No Flights Included",
+    title: "Maha Magh Snan Yatra – No Flights Included",
     destination: "Prayagraj • Ayodhya • Varanasi",
     duration: "3 Nights / 4 Days",
     description:
-      "A spiritually immersive journey featuring the sacred Triveni Sangam Snan, Shri Ram Janmabhoomi Darshan, and the transformational Ganga Aarti at Varanasi. Engineered for families, seniors, and seekers — with structured assistance throughout.",
-    priceFrom: 28749, // 24999 × 1.15
+      "A spiritually immersive journey featuring the sacred Triveni Sangam Snan, Shri Ram Janmabhoomi Darshan, and the transformational Ganga Aarti at Varanasi. Engineered for families, seniors, and seekers with structured assistance throughout.",
+    priceFrom: 28749,
     currency: "INR",
     rating: 4.9,
     reviews: 812,
     flightIncluded: false,
-    image: `${img1}`,
+    image: [`${img1}`, `${img1a}`],
 
     usps: [
       "Holy Triveni Sangam Snan",
@@ -79,7 +86,7 @@ export const packages = [
     },
 
     addOns: [
-      "VIP Kumbh Snan Pass",
+      "VIP Maha Magh Snan Pass",
       "Pandit-led Private Rituals",
       "Personalized Sankalpa Puja",
       "Sacred Prasadam Delivery",
@@ -90,22 +97,22 @@ export const packages = [
 
   {
     id: 2,
-    title: "Kumbh Divine Circuit – Flights Inclusive",
+    title: "Maha Magh Snan Divine Circuit – Flights Inclusive",
     destination:
       "Prayagraj • Chitrakoot • Ayodhya • Vindhyachal • Varanasi • Sarnath",
     duration: "6 Days",
     description:
-      "An end-to-end, concierge-managed spiritual circuit with return flights ex-Bengaluru. Experience Kumbh Snan, Ramayana landmarks, Shakti Peeth Darshan, and transformative Ganga rituals — delivered with zero-stress logistics.",
-    priceFrom: 86249, // 74999 × 1.15
+      "An end-to-end, concierge-managed spiritual circuit with return flights ex-Bengaluru. Experience Maha Magh Snan, Ramayana landmarks, Shakti Peeth Darshan, and transformative Ganga rituals delivered with zero-stress logistics.",
+    priceFrom: 86249,
     currency: "INR",
     rating: 4.9,
     reviews: 564,
     flightIncluded: true,
-    image: `${img2}`,
+    image: [`${img2}`, `${img2a}`],
 
     usps: [
       "Return Flights Included",
-      "Kumbh Snan Assistance",
+      "Maha Magh Snan Assistance",
       "Ram, Shakti & Moksha Kshetra Coverage",
       "Senior-Friendly Pacing",
       "Dedicated Spiritual Concierge",
@@ -124,7 +131,7 @@ export const packages = [
     },
 
     addOns: [
-      "VIP Kumbh Snan Pass",
+      "VIP Maha Magh Snan Pass",
       "Sankalpa Puja",
       "Wheelchair & Senior Support",
       "Ganga Jal & Prasadam Courier",
@@ -135,21 +142,21 @@ export const packages = [
 
   {
     id: 3,
-    title: "Kumbh Mela Divine Yatra — Flight Inclusive",
+    title: "Maha Magh Snan Divine Yatra — Flight Inclusive",
     destination: "Prayagraj • Ayodhya • Varanasi",
     duration: "3 Nights / 4 Days",
     description:
-      "A high-impact short-format pilgrimage with return flights ex-Bengaluru. Includes Kumbh Snan, Ayodhya Darshan, Ganga Aarti, and Kashi Vishwanath — fully supported end-to-end.",
+      "A high-impact short-format pilgrimage with return flights ex-Bengaluru. Includes Maha Magh Snan, Ayodhya Darshan, Ganga Aarti, and Kashi Vishwanath fully supported end-to-end.",
     priceFrom: 68999, // 59999 × 1.15
     currency: "INR",
     rating: 4.8,
     reviews: 437,
     flightIncluded: true,
-    image: `${img3}`,
+    image: [`${img3}`, `${img3a}`, `${img3b}`],
 
     usps: [
       "Return Flights Included",
-      "Holy Kumbh Snan",
+      "Holy Maha Magh Snan",
       "Kashi Vishwanath Darshan",
       "Airport & Temple Transfers",
       "Assisted Spiritual Journey",
@@ -211,8 +218,8 @@ export default function Packages() {
   };
 
   const openForm = () => setShowForm(true);
-  const closeForm = () =>{
-    setShowForm(false)
+  const closeForm = () => {
+    setShowForm(false);
     setFormData({
       fullName: "",
       phone: "",
@@ -220,99 +227,99 @@ export default function Packages() {
       guardianName: "",
       purpose: "",
       packageType: "Sankalpa Puja",
-      price: 1001, 
+      price: 1001,
     });
   };
 
   const handleSubmit = async (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  const sdkLoaded = await loadRazorpay();
-  // console.log("Razorpay SDK loaded:", sdkLoaded);
+    const sdkLoaded = await loadRazorpay();
+    // console.log("Razorpay SDK loaded:", sdkLoaded);
 
-  if (!sdkLoaded) {
-    toast.error("Payment failed to initialize");
-    return;
-  }
+    if (!sdkLoaded) {
+      toast.error("Payment failed to initialize");
+      return;
+    }
 
-  const amount = formData.price;
-  const amountBase = Number(amount);
-const gst = Math.round(amountBase * 0.18);
-const amountToPay = amountBase + gst;
+    const amount = formData.price;
+    const amountBase = Number(amount);
+    const gst = Math.round(amountBase * 0.18);
+    const amountToPay = amountBase + gst;
 
-  try {
-    // 1️⃣ Create Razorpay Order
-    const { data: order } = await createOrder(amountToPay);
-    // console.log("Razorpay order created:", order);
+    try {
+      // 1️⃣ Create Razorpay Order
+      const { data: order } = await createOrder(amountToPay);
+      // console.log("Razorpay order created:", order);
 
-    // 2️⃣ Open Checkout
-    const options = {
-      key: import.meta.env.VITE_RAZORPAY_KEY_ID,
-      amount: order.amount,
-      currency: "INR",
-      name: "Anantha Tourism",
-      description: formData.packageType,
-      order_id: order.id,
+      // 2️⃣ Open Checkout
+      const options = {
+        key: import.meta.env.VITE_RAZORPAY_KEY_ID,
+        amount: order.amount,
+        currency: "INR",
+        name: "Anantha Tourism",
+        description: formData.packageType,
+        order_id: order.id,
 
-      prefill: {
-        name: formData.fullName,
-        contact: formData.phone,
-      },
+        prefill: {
+          name: formData.fullName,
+          contact: formData.phone,
+        },
 
-      handler: async function (response) {
-        // 3️⃣ Verify
-        const { data: verify } = await verifyPayment(response);
+        handler: async function (response) {
+          // 3️⃣ Verify
+          const { data: verify } = await verifyPayment(response);
 
-        if (!verify.success) {
-          toast.error("Payment verification failed");
-          return;
-        }
+          if (!verify.success) {
+            toast.error("Payment verification failed");
+            return;
+          }
 
-        // 4️⃣ Save Booking
-        await saveBooking({
-          ...formData,
-          payment: {
-            orderId: response.razorpay_order_id,
-            paymentId: response.razorpay_payment_id,
-            signature: response.razorpay_signature,
-            status: "PAID",
-          },
-        });
+          // 4️⃣ Save Booking
+          await saveBooking({
+            ...formData,
+            payment: {
+              orderId: response.razorpay_order_id,
+              paymentId: response.razorpay_payment_id,
+              signature: response.razorpay_signature,
+              status: "PAID",
+            },
+          });
 
-         toast.success("Sankalpa Booking Confirmed 🙏");
-        closeForm();
-      },
+          toast.success("Sankalpa Booking Confirmed 🙏");
+          closeForm();
+        },
 
         // 🔴 PAYMENT FAILED (bank/auth/decline)
-  error: function (err) {
-    console.error("Razorpay Failure:", err);
-    toast.error("Payment failed. Please try again.");
-    closeForm
-  },
+        error: function (err) {
+          console.error("Razorpay Failure:", err);
+          toast.error("Payment failed. Please try again.");
+          closeForm;
+        },
 
-  // 🚪 USER CLOSED CHECKOUT WITHOUT PAYING
-  modal: {
-    ondismiss: function () {
-      toast.info("Payment cancelled");
-      closeForm();
-    },
-  },
+        // 🚪 USER CLOSED CHECKOUT WITHOUT PAYING
+        modal: {
+          ondismiss: function () {
+            toast.info("Payment cancelled");
+            closeForm();
+          },
+        },
 
-      theme: { color: "#3F2455" },
-    };
+        theme: { color: "#3F2455" },
+      };
 
-    new window.Razorpay(options).open();
-  } catch (err) {
-    console.error(err);
-     toast.error("Payment could not be processed");
-  }
-};
+      new window.Razorpay(options).open();
+    } catch (err) {
+      console.error(err);
+      toast.error("Payment could not be processed");
+    }
+  };
   return (
     <section
       id="packages"
       className="relative overflow-hidden bg-linear-to-b from-white via-gray-50 to-white py-24"
     >
-          <ToastContainer position="top-center" />
+      <ToastContainer position="top-center" />
       {/* Decorative Blobs */}
       <div className="absolute right-0 top-0 h-96 w-96 rounded-full bg-blue-500/10 blur-3xl -z-10" />
       <div className="absolute bottom-0 left-0 h-96 w-96 rounded-full bg-yellow-400/10 blur-3xl -z-10" />
@@ -323,17 +330,19 @@ const amountToPay = amountBase + gst;
           <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-blue-600/20 bg-blue-600/10 px-4 py-2">
             <TrendingUp size={16} className="text-[#3F2455]" />
             <span className="text-sm font-semibold text-[#3F2455]">
-             Premium Magh Kumbh Experiences
+              Premium Maha Magh Snan Experiences
             </span>
           </div>
 
           <h2 className="mb-6 text-4xl font-bold text-gray-900 md:text-5xl lg:text-6xl">
-           Spiritual Stay{" "}
-            <span className="text-[#3F2455]">Experiences</span>
+            Spiritual Stay <span className="text-[#3F2455]">Experiences</span>
           </h2>
 
-          <p className="mx-auto max-w-3xl text-lg leading-relaxed text-gray-600">
-            Embark on a curated Magh Kumbh 2026 journey that integrates devotion, cultural immersion, guided rituals, and premium hospitality delivering a truly transformative spiritual experience.
+          <p className="mx-auto max-w-5xl text-lg leading-relaxed text-gray-600">
+            Embark on a curated Maha Magh Snan 2026 pilgrimage at Triveni Sangam
+            that blends devotion, priest-guided holy bathing rituals, Kalpavas
+            discipline, cultural immersion, and premium hospitality delivering a
+            truly transformative spiritual experience.
           </p>
         </div>
 
@@ -347,11 +356,11 @@ const amountToPay = amountBase + gst;
             >
               <div className="flex h-full flex-col overflow-hidden rounded-xl bg-white shadow-lg transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl">
                 {/* Image */}
-                <div className="relative h-70 overflow-hidden">
+                {/* <div className="relative overflow-hidden">
                   <img
                     src={pkg.image}
                     alt={pkg.destination}
-                    className="h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-110"
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
 
                   <div className="absolute inset-0 bg-linear-to-t from-[#00000089] via-transparent to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
@@ -367,7 +376,72 @@ const amountToPay = amountBase + gst;
                       ✈️ Flights Included
                     </span>
                   )}
-                </div>
+                </div> */}
+              <div className="relative overflow-hidden">
+  {(() => {
+    const images = Array.isArray(pkg.image) ? pkg.image : [pkg.image];
+    const [index, setIndex] = useState(0);
+
+    useEffect(() => {
+      if (!images.length) return;
+      const interval = setInterval(() => {
+        setIndex(prev => (prev + 1) % images.length);
+      }, 4000);
+      return () => clearInterval(interval);
+    }, [images.length]);
+
+    return (
+      <>
+        {/* FADE TRANSITION SLIDER */}
+        <div className="relative h-80 w-full">
+          {images.map((src, i) => (
+            <img
+              key={i}
+              src={src}
+              alt={pkg.destination}
+              loading="lazy"
+              className={`absolute inset-0 h-80 w-full object-cover transition-opacity duration-1000 ${
+                i === index ? "opacity-100" : "opacity-0"
+              }`}
+            />
+          ))}
+        </div>
+
+        {/* DARK OVERLAY */}
+        <div className="absolute inset-0 bg-linear-to-t from-[#00000089] via-transparent to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
+
+        {/* BADGE */}
+        {pkg.badge && (
+          <span className="absolute right-4 top-4 rounded-full bg-[#CF9F3B] px-3 py-1 text-xs font-bold text-gray-900 shadow-lg">
+            ⭐ {pkg.badge}
+          </span>
+        )}
+
+        {/* FLIGHT TAG */}
+        {pkg.flightIncluded && (
+          <span className="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1 text-[10px] font-bold text-[#3F2455] shadow">
+            ✈️ Flights Included
+          </span>
+        )}
+
+        {/* DOT INDICATORS */}
+        {images.length > 1 && (
+          <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2">
+            {images.map((_, i) => (
+              <div
+                key={i}
+                className={`h-2 rounded-full transition-all ${
+                  index === i ? "w-4 bg-white" : "w-2 bg-white/50"
+                }`}
+              />
+            ))}
+          </div>
+        )}
+      </>
+    );
+  })()}
+</div>
+
 
                 {/* Content */}
                 <div className="flex flex-1 flex-col p-6">
@@ -561,7 +635,7 @@ const amountToPay = amountBase + gst;
                   className="w-full border rounded-lg px-4 py-3"
                 />
                 <input
-                 type="text"
+                  type="text"
                   name="gotra"
                   placeholder="Gotra (Optional)"
                   value={formData.gotra}

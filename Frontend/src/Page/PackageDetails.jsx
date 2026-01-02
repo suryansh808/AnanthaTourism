@@ -283,7 +283,7 @@ export default function PackageDetails() {
           <img
             src={pkg.image}
             alt={pkg.destination}
-            className="w-full h-120 object-cover object-top"
+            className="w-full h-120 object-cover"
           />
         </div>
 

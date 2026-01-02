@@ -7,7 +7,8 @@ import Header from "../Components/Header"
 import Footer from "../Components/Footer"
 import NewsLetter from "../Components/NewsLetter"
 import WhyChooseUs from "../Components/WhyChooseUs"
-import Gallery from "../Components/Gallery"
+import SnanDates from "../Components/SnanDates"
+import SpiritualSignificance from "../Components/SpiritualSignificance"
 
 const Home = () => {
   const homeRef = useRef(null)
@@ -35,6 +36,8 @@ const Home = () => {
        <div ref={packagesRef}>
           <Packages />
        </div>
+        <SnanDates/>
+        <SpiritualSignificance/>
         {/* <div ref={destinationsRef}>
            <Destinations /> 
         </div> */}
@@ -42,7 +45,6 @@ const Home = () => {
           <NewsLetter />
         </div> */}
         <WhyChooseUs/>
-        <Gallery/>
         <Footer
        onHome={() => scrollTo(homeRef)}
         onPackages={() => scrollTo(packagesRef)}

@@ -3,8 +3,8 @@ import { ToastContainer, toast } from "react-toastify";
 import { createLead } from "../api/leads";
 import 'react-toastify/dist/ReactToastify.css';
 import img1 from '../assets/kumbh/1.png';
-import img2 from '../assets/kumbh/2.jpg';
-import img3 from '../assets/kumbh/3.jpg';
+import img2 from '../assets/kumbh/2.png';
+import img3 from '../assets/kumbh/3.png';
 import img4 from '../assets/kumbh/4.png';
 
 export default function Hero() {
@@ -44,30 +44,10 @@ export default function Hero() {
   }
 };
 const slides = [
-  {
-    title: 'Sacred Confluence',
-    images: `${img1}`,
-    subtitle: 'Experience Magh Kumbh 2026 at Prayagraj.',
-    accent: 'Sangam'
-  },
-  {
-    title: 'Auspicious Snan',
-    images: `${img2}`,
-    subtitle: 'Take the holy dip on sacred days.',
-    accent: 'Purity'
-  },
-  {
-    title: 'Kalpavas Retreat',
-    images: `${img3}`,
-    subtitle: 'Live in devotion and mindful discipline.',
-    accent: 'Devotion'
-  },
-  {
-    title: 'Cultural Harmony',
-    images: `${img4}`,
-    subtitle: 'Explore rituals, music, and spiritual talks.',
-    accent: 'Heritage'
-  }
+  { title: "Sacred River Confluence", subtitle: "Experience the divine union of Ganga, Yamuna & Saraswati.", image: `${img1}`, accent: "Triveni Sangam" },
+  { title: "Maha Magh Snan 2026", subtitle: "Take the holy dip on highly auspicious bathing dates.", image: `${img2}`, accent: "Spiritual Renewal" },
+  { title: "Kalpavas Devotion", subtitle: "Live with discipline, simplicity and spiritual intent.", image: `${img3}`, accent: "Devotion & Sadhana" },
+  { title: "Spiritual Harmony", subtitle: "Immerse in prayers, rituals and sacred cultural heritage.", image: `${img4}`, accent: "Heritage & Faith" }
 ];
 
 
@@ -91,7 +71,7 @@ const slides = [
           }`}
         >
           <img
-            src={slide.images}
+            src={slide.image}
             alt={slide.title}
             className="w-full h-full object-cover"
           />
