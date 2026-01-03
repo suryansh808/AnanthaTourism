@@ -12,14 +12,17 @@ import logo from "../assets/logo.png";
 export default function Footer({ onHome, onPackages }) {
   const [showPrivacy, setShowPrivacy] = useState(false);
   const [showTerms, setShowTerms] = useState(false);
+  const [cancellationPolicy, setCancellationPolicy] = useState(false);
+
   useEffect(() => {
-    if (showPrivacy || showTerms) {
+    if (showPrivacy || showTerms || cancellationPolicy) {
       document.body.style.overflow = "hidden";
-    } else {
+    }  else{
       document.body.style.overflow = "auto";
     }
-  }, [showPrivacy, showTerms]);
+  }, [showPrivacy, showTerms, cancellationPolicy]);
   return (
+
     <footer
       // style={{
       //   background: "radial-gradient(circle, #3F2455, #000 75%)",
@@ -54,6 +57,14 @@ export default function Footer({ onHome, onPackages }) {
                   className="hover:text-accent transition font-medium cursor-pointer"
                 >
                   Packages
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => setCancellationPolicy(true)}
+                  className="hover:text-accent transition font-medium cursor-pointer"
+                >
+                  Cancellation Policy
                 </button>
               </li>
               <li>
@@ -130,12 +141,13 @@ export default function Footer({ onHome, onPackages }) {
 
        
 
-        {(showPrivacy || showTerms) && (
+        {(showPrivacy || showTerms || cancellationPolicy) && (
         <div
           className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-100"
           onClick={() => {
             setShowPrivacy(false);
             setShowTerms(false);
+            setCancellationPolicy(false);
           }}
         >
           <div
@@ -150,6 +162,7 @@ export default function Footer({ onHome, onPackages }) {
                 onClick={() => {
                   setShowPrivacy(false);
                   setShowTerms(false);
+                  setCancellationPolicy(false);
                 }}
               >
                 <X className="w-5 h-5" />
@@ -211,7 +224,7 @@ export default function Footer({ onHome, onPackages }) {
                     privacy-related concern, you may reach out to our support
                     team at:
                     <br />
-                    <strong>support@ananthatourism.com</strong>
+                    <strong>ananthatourism@gmail.com</strong>
                   </p>
                 </>
               )}
@@ -275,6 +288,50 @@ export default function Footer({ onHome, onPackages }) {
                   </p>
                 </>
               )}
+
+             {cancellationPolicy && (
+  <>
+    <h3 className="font-semibold mb-2">Cancellation Policy</h3>
+
+    <p className="mb-3">
+      Cancellation requests must be formally submitted via email.
+    </p>
+
+    <ul className="list-disc pl-5 mb-3 space-y-1">
+      <li>30 – 07 days prior to departure: 10% of the package cost will be charged.</li>
+      <li>07 – 02 days prior to departure: 25% of the package cost will be charged.</li>
+      <li>Within 48 hours of departure / No Show: 100% of the package cost will be charged.</li>
+      <li>
+        Peak Season (Apr 15 – Jun 15, 10 days during Dasara, 10 days during Diwali,
+        and 15 days during Christmas &amp; New Year): cancellations within 7 days are
+        non-refundable as hotels typically require full advance payment.
+      </li>
+      <li>
+        While the above rules govern cancellations, we will make best-effort attempts
+        to minimize applicable charges.
+      </li>
+    </ul>
+
+    <p className="mb-3 font-semibold">
+      All disputes are subject to Bangalore jurisdiction.
+    </p>
+
+    <p className="mb-2 font-semibold">Important Notes:</p>
+    <ul className="list-disc pl-5 mb-3 space-y-1">
+      <li>
+        Any costs arising from natural calamities, road blockages, political
+        disturbances, etc., are to be borne directly by the guest and paid on the spot.
+      </li>
+      <li>
+        Any additional services requested beyond the agreed scope will be chargeable.
+        No changes or cancellations will be made to the travel itinerary within 7 days
+        of the tour; if enforced, such changes will incur additional costs on actuals.
+      </li>
+    </ul>
+  </>
+)}
+
+
             </div>
           </div>
         </div>
