@@ -25,6 +25,7 @@ export default function PackageDetails() {
 
   const { id } = useParams();
   const pkg = packages.find((p) => p.id === Number(id));
+  console.log("Selected Package:", pkg);
 
   if (!pkg) {
     return (
@@ -281,7 +282,7 @@ export default function PackageDetails() {
         {/* Hero */}
         <div className="rounded-xl overflow-hidden shadow-xl mb-12">
           <img
-            src={pkg.image}
+            src={pkg.image[0]}
             alt={pkg.destination}
             className="w-full h-120 object-cover"
           />
