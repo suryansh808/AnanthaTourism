@@ -2,10 +2,8 @@ import { useRef } from "react"
 
 import Hero from "../Components/Hero"
 import Packages from "../Components/Packages"
-// import Destinations from "../Components/Destinations"
 import Header from "../Components/Header"
 import Footer from "../Components/Footer"
-import NewsLetter from "../Components/NewsLetter"
 import WhyChooseUs from "../Components/WhyChooseUs"
 import SnanDates from "../Components/SnanDates"
 import SpiritualSignificance from "../Components/SpiritualSignificance"
@@ -26,6 +24,7 @@ const Home = () => {
       block: "start",
     })
   }
+  
   return (
     <>
       <Header 
@@ -43,12 +42,6 @@ const Home = () => {
        </div>
         <SnanDates/>
         <SpiritualSignificance/>
-        {/* <div ref={destinationsRef}>
-           <Destinations /> 
-        </div> */}
-        {/* <div ref={contactRef}>
-          <NewsLetter />
-        </div> */}
         <WhyChooseUs/>
         <Footer
        onHome={() => scrollTo(homeRef)}

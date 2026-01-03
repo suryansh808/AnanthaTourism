@@ -29,7 +29,7 @@ export const packages = [
     reviews: 128,
     flightIncluded: false,
     image: [`${img4}`, `${img4a}`, `${img4b}`],
-
+    gst: 18,
     usps: [
       "Pandit-Led Ritual Experience",
       "Personalized Sankalpa Offering",
@@ -54,17 +54,16 @@ export const packages = [
   {
     id: 1,
     title: "Maha Magh Snan Yatra – No Flights Included",
-    destination: "Prayagraj • Ayodhya • Varanasi",
+    destination: "Prayagraj",
     duration: "3 Nights / 4 Days",
-    description:
-      "A spiritually immersive journey featuring the sacred Triveni Sangam Snan, Shri Ram Janmabhoomi Darshan, and the transformational Ganga Aarti at Varanasi. Engineered for families, seniors, and seekers with structured assistance throughout.",
+    description: "A spiritually immersive journey featuring the sacred Triveni Sangam Snan, Shri Ram Janmabhoomi Darshan, and the transformational Ganga Aarti at Varanasi. Engineered for families, seniors, and seekers with structured assistance throughout.",
     priceFrom: 28749,
     currency: "INR",
     rating: 4.9,
     reviews: 812,
     flightIncluded: false,
     image: [`${img1}`, `${img1a}`],
-
+    gst: 5,
     usps: [
       "Holy Triveni Sangam Snan",
       "Ram Janmabhoomi Darshan",
@@ -109,7 +108,7 @@ export const packages = [
     reviews: 564,
     flightIncluded: true,
     image: [`${img2}`, `${img2a}`],
-
+    gst: 18,
     usps: [
       "Return Flights Included",
       "Maha Magh Snan Assistance",
@@ -153,7 +152,7 @@ export const packages = [
     reviews: 437,
     flightIncluded: true,
     image: [`${img3}`, `${img3a}`, `${img3b}`],
-
+    gst: 18,
     usps: [
       "Return Flights Included",
       "Holy Maha Magh Snan",
@@ -562,7 +561,7 @@ export default function Packages() {
                           ₹{pkg.priceFrom.toLocaleString("en-IN")}
                         </p>
                         <span className="font-xs text-[#3F2455]">
-                          + 18% GST
+                          + {pkg.gst}% GST
                         </span>
                       </div>
                     </div>

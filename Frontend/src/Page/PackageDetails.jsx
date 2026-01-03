@@ -25,7 +25,7 @@ export default function PackageDetails() {
 
   const { id } = useParams();
   const pkg = packages.find((p) => p.id === Number(id));
-  console.log("Selected Package:", pkg);
+  // console.log("Selected Package:", pkg);
 
   if (!pkg) {
     return (
@@ -517,23 +517,7 @@ export default function PackageDetails() {
                     className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#3F2455] transition"
                   />
 
-                  {/* {formData.travelers && (
-                    <div className="bg-[#CF9F3B]/10 border border-[#CF9F3B] rounded-lg p-4">
-                      <div className="flex justify-between items-center">
-                        <span className="text-sm font-semibold text-gray-700">
-                          Estimated Total:
-                        </span>
-                        <span className="text-xl font-bold text-[#3F2455]">
-                          ₹{priceBase * Number(formData.travelers)}
-                        </span>
-                      </div>
-                      <p className="text-xs text-gray-500 mt-1">
-                        ₹{priceBase} × {formData.travelers} traveler
-                        {formData.travelers > 1 ? "s" : ""}
-                      </p>
-                    </div>
-                  )} */}
-                  {formData.travelers && selectedTier && (
+                  {/* {formData.travelers && selectedTier && (
                     <div className="bg-[#CF9F3B]/10 border border-[#CF9F3B] rounded-lg p-2 space-y-1">
                       <p className="text-sm font-semibold">
                         Subtotal: ₹
@@ -560,10 +544,42 @@ export default function PackageDetails() {
 
                       <p className="text-xs text-gray-500">
                         ₹{basePrice} × {formData.travelers} traveller
-                        {formData.travelers > 1 ? "s" : ""} + 18% GST
+                        {formData.travelers > 1 ? "s" : ""}
                       </p>
                     </div>
-                  )}
+                  )} */}
+                  {formData.travelers && selectedTier && (
+  <div className="bg-[#CF9F3B]/10 border border-[#CF9F3B] rounded-lg p-2 space-y-1">
+
+    <p className="text-sm font-semibold">
+      Subtotal: ₹
+      {(basePrice * Number(formData.travelers)).toLocaleString("en-IN")}
+    </p>
+
+    <p className="text-sm font-semibold">
+      GST ({pkg.gst}%): ₹
+      {(basePrice *
+        Number(formData.travelers) *
+        (pkg.gst / 100)
+      ).toLocaleString("en-IN")}
+    </p>
+
+    <p className="text-md font-bold text-[#3F2455]">
+      Total Payable: ₹
+      {Math.round(
+        basePrice *
+          Number(formData.travelers) *
+          (1 + pkg.gst / 100)
+      ).toLocaleString("en-IN")}
+    </p>
+
+    <p className="text-xs text-gray-500">
+      ₹{basePrice} × {formData.travelers} traveller
+      {formData.travelers > 1 ? "s" : ""}
+    </p>
+  </div>
+)}
+
                 </div>
 
                 <button
@@ -604,6 +620,7 @@ export default function PackageDetails() {
           animation: fade-in 0.3s ease-out;
         }
       `}</style>
+
        <div className="bg-green-800 px-3 py-2 lg:text-4xl text-3xl fixed bottom-8 right-8 rounded-full z-50 shadow-lg hover:shadow-xl transition-shadow">
           <a
             href="https://wa.me/918861571188"
