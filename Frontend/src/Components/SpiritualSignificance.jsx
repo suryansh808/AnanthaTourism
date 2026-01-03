@@ -5,7 +5,7 @@ export default function SpiritualSignificance() {
   const [isHindi, setIsHindi] = useState(false);
 
   return (
-    <div className="py-16 px-2.5">
+    <div className="py-16 px-2.5 bg-linear-to-b from-white via-gray-50 to-white">
       <section className="max-w-6xl mx-auto border p-6 border-gray-300 rounded-lg shadow-sm">
           <div className="flex justify-between items-center mb-3">
             <span></span>

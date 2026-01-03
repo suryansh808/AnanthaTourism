@@ -167,89 +167,86 @@ export default function PackageDetails() {
       });
 
       const options = {
-  key: import.meta.env.VITE_RAZORPAY_KEY_ID,
-  amount: order.amount,
-  currency: "INR",
-  name: "Anantha Tourism",
-  description: `${pkg.title} — ${selectedTier.category}`,
-  order_id: order.id,
+        key: import.meta.env.VITE_RAZORPAY_KEY_ID,
+        amount: order.amount,
+        currency: "INR",
+        name: "Anantha Tourism",
+        description: `${pkg.title} — ${selectedTier.category}`,
+        order_id: order.id,
 
-  prefill: {
-    name: formData.fullName,
-    email: formData.email,
-    contact: formData.phone,
-  },
-
-  // 🟢 PAYMENT SUCCESS — VERIFIED LATER VIA API
-  handler: async function (response) {
-    try {
-      const bookingPayload = {
-        packageDetails: {
-          id: pkg.id,
-          title: pkg.title,
-          tier: selectedTier.category,
-          pricePerPerson: basePrice,
-          destination: pkg.destination,
-          duration: pkg.duration,
-        },
-        customerDetails: {
-          fullName: formData.fullName,
+        prefill: {
+          name: formData.fullName,
           email: formData.email,
-          phone: formData.phone,
-          numberOfTravelers: totalTravelers,
+          contact: formData.phone,
         },
-        pricing: {
-          subTotal,
-          gstAmount,
-          totalAmount: amountWithGst,
+
+        // 🟢 PAYMENT SUCCESS — VERIFIED LATER VIA API
+        handler: async function (response) {
+          try {
+            const bookingPayload = {
+              packageDetails: {
+                id: pkg.id,
+                title: pkg.title,
+                tier: selectedTier.category,
+                pricePerPerson: basePrice,
+                destination: pkg.destination,
+                duration: pkg.duration,
+              },
+              customerDetails: {
+                fullName: formData.fullName,
+                email: formData.email,
+                phone: formData.phone,
+                numberOfTravelers: totalTravelers,
+              },
+              pricing: {
+                subTotal,
+                gstAmount,
+                totalAmount: amountWithGst,
+              },
+              payment: response,
+            };
+
+            const { data } = await api.post(
+              "/payments/verify-and-book",
+              bookingPayload
+            );
+
+            if (!data.success) {
+              toast.error("Payment verification failed");
+              return;
+            }
+
+            toast.success(`Booking Confirmed 🎉 Reference: ${data.bookingId}`);
+            closeFrom();
+          } catch (err) {
+            console.error(err);
+            toast.error("Payment verification failed");
+          }
         },
-        payment: response,
+
+        // 🔴 PAYMENT FAILED (bank/auth/decline)
+        error: function (err) {
+          console.error("Razorpay Failure:", err);
+          toast.error("Payment failed. Please try again.");
+          closeFrom();
+        },
+
+        // 🚪 USER CLOSED CHECKOUT WITHOUT PAYING
+        modal: {
+          ondismiss: function () {
+            toast.info("Payment cancelled");
+            closeFrom();
+          },
+        },
+
+        theme: { color: "#3F2455" },
       };
-
-      const { data } = await api.post(
-        "/payments/verify-and-book",
-        bookingPayload
-      );
-
-      if (!data.success) {
-        toast.error("Payment verification failed");
-        return;
-      }
-
-      toast.success(`Booking Confirmed 🎉 Reference: ${data.bookingId}`);
-      closeFrom();
-
-    } catch (err) {
-      console.error(err);
-      toast.error("Payment verification failed");
-    }
-  },
-
-  // 🔴 PAYMENT FAILED (bank/auth/decline)
-  error: function (err) {
-    console.error("Razorpay Failure:", err);
-    toast.error("Payment failed. Please try again.");
-    closeFrom();
-  },
-
-  // 🚪 USER CLOSED CHECKOUT WITHOUT PAYING
-  modal: {
-    ondismiss: function () {
-      toast.info("Payment cancelled");
-      closeFrom();
-    },
-  },
-
-  theme: { color: "#3F2455" },
-};
-
 
       new window.Razorpay(options).open();
     } catch (err) {
       console.error(err);
       toast.error("Unable to initiate payment");
     }
-    
   };
 
   const closeFrom = () => {
@@ -259,9 +256,10 @@ export default function PackageDetails() {
   };
 
   return (
-    <div className="min-h-screen bg-linear-to-b from-white to-slate-50">
+     <>
+     <div className="min-h-screen bg-linear-to-b from-white to-slate-50">
       {/* Header */}
-       <ToastContainer position="top-center" />
+      <ToastContainer position="top-center" />
       <header className="container m-auto w-full sm:rounded-xl lg:rounded-full mt-2 bg-[#ffffff91] backdrop-blur-md shadow-lg sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-6 py-4 lg:flex flex-wrap  items-center gap-5">
           <Link
@@ -606,7 +604,18 @@ export default function PackageDetails() {
           animation: fade-in 0.3s ease-out;
         }
       `}</style>
-    </div>
+       <div className="bg-green-800 px-3 py-2 lg:text-4xl text-3xl fixed bottom-8 right-8 rounded-full z-50 shadow-lg hover:shadow-xl transition-shadow">
+          <a
+            href="https://wa.me/918861571188"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-white"
+          >
+            <i className="fa fa-whatsapp" />
+          </a>
+         </div>
+     </div>
+     </>
   );
 }
 

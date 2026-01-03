@@ -9,6 +9,7 @@ import NewsLetter from "../Components/NewsLetter"
 import WhyChooseUs from "../Components/WhyChooseUs"
 import SnanDates from "../Components/SnanDates"
 import SpiritualSignificance from "../Components/SpiritualSignificance"
+import Marquee from "../Components/marquee"
 
 const Home = () => {
   const homeRef = useRef(null)
@@ -33,6 +34,7 @@ const Home = () => {
        <div ref={homeRef}>
           <Hero />
        </div>
+         <Marquee/>
        <div ref={packagesRef}>
           <Packages />
        </div>

@@ -12,7 +12,7 @@ const dates = [
 
 export default function SnanDates() {
   return (
-    <div className="py-16 px-2.5">
+    <div className="py-16 px-2.5 bg-zinc-50">
          <section className="max-w-6xl mx-auto ">
         <div className="text-center mb-10">
             <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-blue-600/20 bg-blue-600/10 px-4 py-2">

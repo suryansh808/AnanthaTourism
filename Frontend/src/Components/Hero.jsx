@@ -30,6 +30,7 @@ export default function Hero() {
   setLoading(true);
   try {
     await createLead(formData);
+
     toast.success("Your enquiry has been successfully logged. We’ll revert ASAP.");
 
     setFormData({
@@ -62,6 +63,7 @@ const slides = [
 
   return (
     <div id='home' className="relative w-full px-2.5 py-30 overflow-hidden">
+           <ToastContainer position="top-center" />
       {/* Animated Background Slides */}
       {slides.map((slide, index) => (
         <div
@@ -187,7 +189,7 @@ const slides = [
           {loading ? "Submitting..." : "Submit"}
         </button>
       </form>
-      <ToastContainer position="top-center" />
+ 
       <p className="text-gray-300 text-xs mt-4">
         We’ll circle back with a curated itinerary tailored to your needs.
       </p>
