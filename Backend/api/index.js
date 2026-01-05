@@ -10,6 +10,7 @@ import paymentRoutes from "../routes/paymentRoutes.js";
 import sankaplapaymentRoutes from "../routes/sankalpaPaymentRoutes.js";
 import sankaplabookingRoutes from "../routes/sankalpaBookingRoutes.js";
 import leadRoutes from "../routes/leadRoutes.js";
+import phonepepaymentRoutes from "../routes/phonepepaymentRoutes.js";
 
 await connectDB();   // optional await if async
 
@@ -24,6 +25,7 @@ app.use("/api/payments", paymentRoutes);
 app.use("/api/sankalpa-payments", sankaplapaymentRoutes);
 app.use("/api/sankalpa-bookings", sankaplabookingRoutes);
 app.use("/api/contactus", leadRoutes);
+app.use("/api/phonepe", phonepepaymentRoutes);
 
 app.get("/", (req, res) => {
   res.send("Backend API Running 🚀");

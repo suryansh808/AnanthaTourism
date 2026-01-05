@@ -60,87 +60,7 @@ export default function PackageDetails() {
     });
   };
 
-  // const handleFormSubmit = async (e) => {
-  //   e.preventDefault();
 
-  //   if (!(await loadRazorpay())) {
-  //     alert("Payment gateway unavailable");
-  //     return;
-  //   }
-
-  //   const totalTravelers = Number(formData.travelers);
-  // const subTotal = priceBase * totalTravelers;
-  // const gstAmount = subTotal * 0.18;
-  // const amountWithGst = Math.round(subTotal + gstAmount);
-
-  //   try {
-  //     const { data: order } = await api.post("/payments/create-order", {
-  //       amount: amountWithGst
-  //     });
-
-  //     if (!import.meta.env.VITE_RAZORPAY_KEY_ID) {
-  //       throw new Error("Razorpay Key missing. Check Vite env configuration.");
-  //     }
-
-  //     const options = {
-  //       key: import.meta.env.VITE_RAZORPAY_KEY_ID,
-  //       amount: order.amount,
-  //       currency: "INR",
-  //       name: "Anantha Tourism",
-  //       description: pkg.title,
-  //       order_id: order.id,
-  //       prefill: {
-  //         name: formData.fullName,
-  //         email: formData.email,
-  //         contact: formData.phone
-  //       },
-  //       handler: async (response) => {
-  //         const bookingPayload = {
-  //           packageDetails: {
-  //             id: pkg.id,
-  //             title: pkg.title,
-  //             destination: pkg.destination,
-  //             duration: pkg.duration,
-  //             price: priceBase
-  //           },
-  //           customerDetails: {
-  //             fullName: formData.fullName,
-  //             email: formData.email,
-  //             phone: formData.phone,
-  //             numberOfTravelers: totalTravelers
-  //           },
-  //           totalAmount: amount
-  //         };
-
-  //         const { data } = await api.post("/payments/verify-and-book", {
-  //           ...response,
-  //           bookingData: bookingPayload
-  //         });
-
-  //         setFormData({
-  //           fullName: "",
-  //           email: "",
-  //           phone: "",
-  //           travelers: ""
-  //         });
-
-  //         if (!data.success) {
-  //           alert("Payment verification failed");
-  //           return;
-  //         }
-
-  //         alert(`Booking Confirmed\nID: ${data.bookingId}`);
-  //         setShowForm(false);
-  //       },
-  //       theme: { color: "#3F2455" }
-  //     };
-
-  //     new window.Razorpay(options).open();
-  //   } catch (err) {
-  //     console.error(err);
-  //     alert("Unable to initiate payment");
-  //   }
-  // };
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
@@ -517,37 +437,6 @@ export default function PackageDetails() {
                     className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#3F2455] transition"
                   />
 
-                  {/* {formData.travelers && selectedTier && (
-                    <div className="bg-[#CF9F3B]/10 border border-[#CF9F3B] rounded-lg p-2 space-y-1">
-                      <p className="text-sm font-semibold">
-                        Subtotal: ₹
-                        {(
-                          basePrice * Number(formData.travelers)
-                        ).toLocaleString("en-IN")}
-                      </p>
-
-                      <p className="text-sm font-semibold">
-                        GST (18%): ₹
-                        {(
-                          basePrice *
-                          Number(formData.travelers) *
-                          0.18
-                        ).toLocaleString("en-IN")}
-                      </p>
-
-                      <p className="text-md font-bold text-[#3F2455]">
-                        Total Payable: ₹
-                        {Math.round(
-                          basePrice * Number(formData.travelers) * 1.18
-                        ).toLocaleString("en-IN")}
-                      </p>
-
-                      <p className="text-xs text-gray-500">
-                        ₹{basePrice} × {formData.travelers} traveller
-                        {formData.travelers > 1 ? "s" : ""}
-                      </p>
-                    </div>
-                  )} */}
                   {formData.travelers && selectedTier && (
   <div className="bg-[#CF9F3B]/10 border border-[#CF9F3B] rounded-lg p-2 space-y-1">
 

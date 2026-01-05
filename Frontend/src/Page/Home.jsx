@@ -8,7 +8,7 @@ import WhyChooseUs from "../Components/WhyChooseUs"
 import SnanDates from "../Components/SnanDates"
 import SpiritualSignificance from "../Components/SpiritualSignificance"
 import MarqueeSilder from "../Components/MarqueeSilder"
-
+import MaghMelaSchedule from "../Components/MaghMelaSchedule"
 
 
 
@@ -40,7 +40,8 @@ const Home = () => {
        <div ref={packagesRef}>
           <Packages />
        </div>
-        <SnanDates/>
+        {/* <SnanDates/> */}
+         <MaghMelaSchedule/>
         <SpiritualSignificance/>
         <WhyChooseUs/>
         <Footer
