@@ -29,7 +29,7 @@ export const packages = [
     reviews: 128,
     flightIncluded: false,
     image: [`${img4}`, `${img4a}`, `${img4b}`],
-    gst: 18,
+    gst: 5,
     usps: [
       "Pandit-Led Ritual Experience",
       "Personalized Sankalpa Offering",
@@ -108,7 +108,7 @@ export const packages = [
     reviews: 564,
     flightIncluded: true,
     image: [`${img2}`, `${img2a}`],
-    gst: 18,
+    gst: 5,
     usps: [
       "Return Flights Included",
       "Maha Magh Snan Assistance",
@@ -152,7 +152,7 @@ export const packages = [
     reviews: 437,
     flightIncluded: true,
     image: [`${img3}`, `${img3a}`, `${img3b}`],
-    gst: 18,
+    gst: 5,
     usps: [
       "Return Flights Included",
       "Holy Maha Magh Snan",
@@ -243,7 +243,7 @@ export default function Packages() {
 
     const amount = formData.price;
     const amountBase = Number(amount);
-    const gst = Math.round(amountBase * 0.18);
+    const gst = Math.round(amountBase * 5 / 100); 
     const amountToPay = amountBase + gst;
 
     try {
@@ -679,7 +679,7 @@ export default function Packages() {
                 <div className="bg-yellow-50 border border-yellow-300 rounded-lg p-3 text-sm font-semibold">
                   Selected Package: {formData.packageType}
                   <br />
-                  Price: ₹{formData.price.toLocaleString("en-IN")} + 18% GST
+                  Price: ₹{formData.price.toLocaleString("en-IN")} + 5% GST
                 </div>
 
                 <button
