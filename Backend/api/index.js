@@ -25,7 +25,7 @@ app.use("/api/payments", paymentRoutes);
 app.use("/api/sankalpa-payments", sankaplapaymentRoutes);
 app.use("/api/sankalpa-bookings", sankaplabookingRoutes);
 app.use("/api/contactus", leadRoutes);
-app.use("/api/phonepe", phonepepaymentRoutes);
+// app.use("/api/phonepe", phonepepaymentRoutes);
 
 app.get("/", (req, res) => {
   res.send("Backend API Running 🚀");
