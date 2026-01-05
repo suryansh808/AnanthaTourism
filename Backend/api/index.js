@@ -10,13 +10,18 @@ import paymentRoutes from "../routes/paymentRoutes.js";
 import sankaplapaymentRoutes from "../routes/sankalpaPaymentRoutes.js";
 import sankaplabookingRoutes from "../routes/sankalpaBookingRoutes.js";
 import leadRoutes from "../routes/leadRoutes.js";
-import phonepepaymentRoutes from "../routes/phonepepaymentRoutes.js";
+// import phonepepaymentRoutes from "../routes/phonepepaymentRoutes.js";
 
 await connectDB();   // optional await if async
 
 const app = express();
 
-app.use(cors());
+app.use(cors({
+  origin: process.env.FRONTEND_URL,
+  methods: ["GET", "POST", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true
+}));
 
 app.use(express.json());
 
