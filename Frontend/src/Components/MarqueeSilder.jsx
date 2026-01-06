@@ -2,10 +2,12 @@ import React from 'react'
 
 const MarqueeSilder = () => {
   return (
-   <div className="mt-2 max-w-6xl mx-auto  py-2">
+   <div className="mt-2 max-w-6xl mx-auto  py-2 px-2.5">
       <marquee behavior="scroll" direction="left">
-        Maha Magh Mela 2026 Prayagraj | 3 Jan to 15 Feb | Plan Your Sacred
-        Sangam Snan with Anantha Tourism
+         Maha Magh Snan 2026 Prayagraj • Sacred Holy Bath at Triveni Sangam •
+        Priest-Guided Sankalpa Puja • Senior-Friendly Pilgrimage Assistance •
+        Trusted Spiritual Travel Concierge • Plan Your Maha Magh Snan Journey
+        with Anantha Tourism
       </marquee>
     </div>
   )

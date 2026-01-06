@@ -1,16 +1,15 @@
 import { FileDown, Calendar, Info } from 'lucide-react';
-// import jsPDF from 'jspdf';
-// import autoTable from 'jspdf-autotable'
-// import logo from "../assets/logo.png"
 const MaghMelaSchedule = () => {
+
   const bathingDates = [
-    { date: "3 Jan 2026", hindiDate: "३ जनवरी २०२६", occasion: "Paush Purnima", hindiOccasion: "पौष पूर्णिमा", significance: "Beginning of Maha Magh Snan & Kalpavas" },
-    { date: "14 Jan 2026", hindiDate: "१४ जनवरी २०२६", occasion: "Makar Sankranti", hindiOccasion: "मकर संक्रांति", significance: "Highly sacred Magh Snan day" },
-    { date: "18 Jan 2026", hindiDate: "१८ जनवरी २०२६", occasion: "Mauni Amavasya", hindiOccasion: "मौनी अमावस्या", significance: "Most auspicious Maha Magh Snan" },
-    { date: "23 Jan 2026", hindiDate: "२३ जनवरी २०२६", occasion: "Basant Panchami", hindiOccasion: "बसंत पंचमी", significance: "Spiritual renewal & devotion" },
-    { date: "1 Feb 2026", hindiDate: "१ फरवरी २०२६", occasion: "Maghi Purnima", hindiOccasion: "माघी पूर्णिमा", significance: "Major Kalpavas bathing day" },
-    { date: "15 Feb 2026", hindiDate: "१५ फरवरी २०२६", occasion: "Maha Shivratri", hindiOccasion: "महाशिवरात्रि", significance: "Final sacred holy bath" },
-  ];
+  { date: "3 Jan 2026", hindiDate: "३ जनवरी २०२६", occasion: "Paush Purnima", hindiOccasion: "पौष पूर्णिमा", significance: "Beginning of Maha Magh Snan and Kalpavas observances at the sacred Triveni Sangam." },
+  { date: "14 Jan 2026", hindiDate: "१४ जनवरी २०२६", occasion: "Makar Sankranti", hindiOccasion: "मकर संक्रांति", significance: "A highly auspicious Maha Magh Snan day believed to grant immense spiritual merit." },
+  { date: "18 Jan 2026", hindiDate: "१८ जनवरी २०२६", occasion: "Mauni Amavasya", hindiOccasion: "मौनी अमावस्या", significance: "The most sacred Maha Magh Snan day ideal for vows, silence, prayer, and inner purification." },
+  { date: "23 Jan 2026", hindiDate: "२३ जनवरी २०२६", occasion: "Basant Panchami", hindiOccasion: "बसंत पंचमी", significance: "Signifies new beginnings and spiritual awakening through the holy bath ritual." },
+  { date: "1 Feb 2026", hindiDate: "१ फरवरी २०२६", occasion: "Maghi Purnima", hindiOccasion: "माघी पूर्णिमा", significance: "One of the principal Kalpavas bathing days marking fulfilment of devotional discipline." },
+  { date: "15 Feb 2026", hindiDate: "१५ फरवरी २०२६", occasion: "Maha Shivratri", hindiOccasion: "महाशिवरात्रि", significance: "Final sacred bathing opportunity of the Maha Magh Snan period devotees honour Lord Shiva and seek divine grace." },
+];
+
 
 const handleDownload = async () => {
   const { default: jsPDF } = await import("jspdf");
@@ -101,11 +100,11 @@ const handleDownload = async () => {
             className="h-16 w-auto"
           />
           <div>
-            <h1 className="text-xl font-bold uppercase tracking-tight text-blue-900 leading-tight">
-              Maha Magh Snan Administration, Prayagraj
-            </h1>
+            <h2 className="text-xl font-bold uppercase tracking-tight text-blue-900 leading-tight">
+                      Maha Magh Snan Administration, Prayagraj
+            </h2>
             <p className="text-sm font-semibold text-gray-600 uppercase">
-              Government of Uttar Pradesh | उत्तर प्रदेश सरकार
+                    Government of Uttar Pradesh | उत्तर प्रदेश सरकार
             </p>
           </div>
         </div>
@@ -119,17 +118,20 @@ const handleDownload = async () => {
       {/* Blue Banner Title */}
       <div className="bg-[#003366] text-white p-3 text-center">
         <h2 className="text-lg font-bold tracking-wide uppercase">
-          Key Bathing Dates for Maha Magh Snan 2026
+           Official Bathing Dates — Maha Magh Snan 2026 Prayagraj
         </h2>
-        <p className="text-xs text-blue-100 italic">मुख्य स्नान तिथियां - महा माघ स्नान २०२६</p>
+        <p className="text-xs text-blue-100 italic"> महा माघ स्नान २०२६ — प्रमुख स्नान तिथियां</p>
       </div>
 
       {/* Information Sub-text */}
       <div className="p-4 bg-yellow-50 border-b border-gray-200 flex items-start space-x-2">
         <Info className="w-5 h-5 text-blue-700 mt-0.5 shrink-0" />
         <p className="text-sm text-gray-700 leading-relaxed">
-          Pilgrims plan their visit to Prayagraj around these highly auspicious <strong>Maha Magh Snan dates</strong>. 
-          Bathing at Triveni Sangram during these periods is believed to bless devotees with spiritual purification and divine grace.
+         Pilgrims across India and the world plan their visit to Prayagraj around
+  these highly sacred <strong>Maha Magh Snan bathing dates</strong>.
+  Taking a holy dip at the <strong>Triveni Sangam</strong> during these
+  periods is believed to purify the soul, remove past karmic impressions,
+  and invoke divine blessings for one’s family and ancestors.
         </p>
       </div>
 
@@ -171,11 +173,11 @@ const handleDownload = async () => {
       {/* Footer / Actions */}
       <div className="bg-slate-100 p-4 flex flex-col sm:flex-row justify-between items-center border-t border-gray-300">
         <p className="text-[10px] text-gray-500 uppercase tracking-widest mb-3 sm:mb-0">
-       Last Updated: 01 Jan 2026 |  Reference No: UP-MAGH-MELA-2026/SNAN-SCH/01
+      Last Updated: 01 Jan 2026  |  Reference Code: UP-MAGH-2026/SNAN-SCHEDULE/01
         </p>
         <button onClick={handleDownload} className="flex items-center cursor-pointer space-x-2 bg-red-700 hover:bg-red-800 text-white px-4 py-2 text-xs font-bold uppercase transition-all shadow-sm">
           <FileDown className="w-4 h-4" />
-          <span>Download Schedule (PDF 240KB)</span>
+          <span>Download Maha Magh Snan 2026 Schedule (PDF 240KB)</span>
         </button>
       </div>
     </div>

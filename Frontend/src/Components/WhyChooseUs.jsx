@@ -3,35 +3,36 @@ import { ShieldCheck, Users, Headphones, Plane, Heart, Sparkles } from "lucide-r
 const reasons = [
   {
     icon: <Sparkles className="w-8 h-8 text-amber-500" />,
-    title: "Authentic Maha Magh Snan Journeys",
-    desc: "Curated Maha Magh Snan 2026 itineraries that harmonize devotion, culture, and comfort always meaningful, never transactional.",
+    title: "Authentic Maha Magh Snan Pilgrimage Experiences",
+    desc: "Carefully curated Maha Magh Snan 2026 itineraries that balance devotion, cultural depth, and comfort always meaningful, never transactional.",
   },
   {
     icon: <Heart className="w-8 h-8 text-amber-500" />,
-    title: "Pandit-Led Holy Bath Rituals",
-    desc: "Priest-guided Sankalpa and Snan ceremonies at Triveni Sangam, delivered with purity, precision, and spiritual integrity in Prayagraj.",
+    title: "Priest-Guided Snan & Sankalpa Rituals",
+    desc: "Vedic priest-led Sankalpa and holy bath assistance at Triveni Sangam delivered with purity, sacred precision, and unwavering spiritual integrity in Prayagraj.",
   },
   {
     icon: <Plane className="w-8 h-8 text-amber-500" />,
-    title: "Seamless End-to-End Pilgrimage",
-    desc: "We orchestrate hotels, transport, guided movement, and darshan access enabling you to focus entirely on the sacred Maha Magh Snan experience.",
+    title: "Seamless, End-to-End Pilgrimage Management",
+    desc: "We manage hotels, transport, guided movement, and darshan coordination enabling you to focus fully on the sacred Maha Magh Snan experience.",
   },
   {
     icon: <ShieldCheck className="w-8 h-8 text-amber-500" />,
-    title: "Trust-First Service Framework",
-    desc: "Proven track record with verified travellers. Transparent processes and zero-compromise safety across the Maha Magh Snan ecosystem in Prayagraj.",
+    title: "Trust-Led Operations & Risk Governance",
+    desc: "A proven delivery track record with verified travellers including transparent processes, disciplined execution, and zero-compromise safety across Prayagraj.",
   },
   {
     icon: <Users className="w-8 h-8 text-amber-500" />,
-    title: "Senior & Family-Ready Pilgrimage",
-    desc: "Wheelchair assistance, guided navigation, and structured support optimized for families and senior devotees attending Maha Magh Snan 2026.",
+    title: "Senior-Friendly & Family-Ready Pilgrimage Design",
+    desc: "Wheelchair support, guided navigation, and structured care purpose-built for families and senior devotees attending Maha Magh Snan 2026.",
   },
   {
     icon: <Headphones className="w-8 h-8 text-amber-500" />,
-    title: "Always-On Pilgrim Support",
-    desc: "Dedicated assistance before, during, and after your Maha Magh Snan journey proactive, reliable, and deeply service-oriented.",
+    title: "Always-On Pilgrim Care & Concierge Support",
+    desc: "Dedicated assistance before, during, and after your journey proactive, responsive, and deeply service-oriented throughout your Maha Magh Snan pilgrimage.",
   },
 ];
+
 
 export default function WhyChooseUs() {
   return (
@@ -46,11 +47,14 @@ export default function WhyChooseUs() {
            </div>
           
           <h2 className="text-xl lg:text-2xl  font-bold mt-2">
-            Trusted for Maha Magh Snan 2026 Pilgrimages
+           Trusted Partner for Maha Magh Snan 2026 Pilgrimages
           </h2>
           <p className="mt-3 text-gray-600 max-w-4xl mx-auto">
-            We deliver curated Maha Magh Snan 2026 journeys with integrity, operational discipline, 
-            and cultural authenticity ensuring a spiritually enriching, premium pilgrimage experience at Triveni Sangam, Prayagraj.
+          We curate spiritually authentic <strong>Maha Magh Snan 2026</strong> journeys
+    at <strong>Triveni Sangam, Prayagraj</strong> with devotion-aligned planning,
+    priest-guided ritual support, senior-friendly assistance, and disciplined
+    on-ground coordination ensuring your pilgrimage is seamless, sacred, and
+    deeply meaningful
           </p>
         </div>
 

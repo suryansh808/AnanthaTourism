@@ -328,20 +328,21 @@ export default function Packages() {
         <div className="mb-16 text-center animate-slide-up">
           <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-blue-600/20 bg-blue-600/10 px-4 py-2">
             <TrendingUp size={16} className="text-[#3F2455]" />
-            <span className="text-sm font-semibold text-[#3F2455]">
-              Premium Maha Magh Snan Experiences
+            <span className="lg:text-sm text-[12px] font-semibold text-[#3F2455]">
+               Maha Magh Snan 2026 Prayagraj
             </span>
           </div>
 
-          <h2 className="mb-6 text-4xl font-bold text-gray-900 md:text-5xl lg:text-6xl">
-            Spiritual Stay <span className="text-[#3F2455]">Experiences</span>
+          <h2 className="mb-6 text-2xl font-bold text-gray-900 md:text-5xl lg:text-5xl">
+                  Premium <span className="text-[#3F2455]">Maha Magh Snan Experiences</span>
           </h2>
 
-          <p className="mx-auto max-w-5xl text-lg leading-relaxed text-gray-600">
-            Embark on a curated Maha Magh Snan 2026 pilgrimage at Triveni Sangam
-            that blends devotion, priest-guided holy bathing rituals, Kalpavas
-            discipline, cultural immersion, and premium hospitality delivering a
-            truly transformative spiritual experience.
+          <p className="mx-auto  max-w-5xl lg:text-lg leading-relaxed text-gray-600">
+           Embark on a spiritually curated Maha Magh Snan 2026 pilgrimage at the
+    holy Triveni Sangam in Prayagraj. Our priest-guided snan assistance,
+    Sankalpa Puja support, senior-friendly care, structured logistics, and
+    culturally rooted devotion deliver a seamless, authentic, and deeply
+    transformative spiritual experience.
           </p>
         </div>
 

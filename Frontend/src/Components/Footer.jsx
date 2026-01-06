@@ -17,19 +17,18 @@ export default function Footer({ onHome, onPackages }) {
   useEffect(() => {
     if (showPrivacy || showTerms || cancellationPolicy) {
       document.body.style.overflow = "hidden";
-    }  else{
+    } else {
       document.body.style.overflow = "auto";
     }
   }, [showPrivacy, showTerms, cancellationPolicy]);
   return (
-
     <footer
       // style={{
       //   background: "radial-gradient(circle, #3F2455, #000 75%)",
       // }}
       className=" py-5 bg-linear-to-b from-white via-gray-50 to-white"
     >
-         <div className="max-w-7xl relative  mx-auto px-4 sm:px-6 lg:px-5">
+      <div className="max-w-7xl relative  mx-auto px-4 sm:px-6 lg:px-5">
         {/* Top Section */}
         <div className="flex flex-wrap  justify-between w-full  md:grid-cols-4 gap-8 mb-12">
           {/* Brand */}
@@ -108,9 +107,9 @@ export default function Footer({ onHome, onPackages }) {
 
         {/* Divider */}
         <div className="border-t border-white/20 py-8">
-            <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p className=" text-sm ">
-              © 2025 Anantha Tourism. All rights reserved.
+              © 2025 Anantha Tourism All Rights Reserved.
             </p>
             <div className="flex gap-4">
               <a href="#" className=" hover:text-accent transition">
@@ -122,26 +121,24 @@ export default function Footer({ onHome, onPackages }) {
               <a href="#" className=" hover:text-accent transition">
                 <Twitter size={20} />
               </a>
-             </div>
-           </div>
-           </div>
-                  
-                {/* whatsapp button */}
-             <div className="bg-green-800 px-3 py-2 lg:text-4xl text-3xl fixed bottom-8 right-8 rounded-full z-50 shadow-lg hover:shadow-xl transition-shadow">
+            </div>
+          </div>
+        </div>
+
+        {/* whatsapp button */}
+        <div className="bg-green-800 px-3 py-2 lg:text-4xl text-3xl fixed bottom-8 right-8 rounded-full z-50 shadow-lg hover:shadow-xl transition-shadow">
           <a
-            href="https://wa.me/918861571188?text=Hello%2C%20I%20would%20like%20to%20inquire%20about%20Maha%20Magh%20Snan%202026%20packages."
+            href="https://wa.me/918861571188?text=Hello%2C%20I%20would%20like%20to%20know%20more%20about%20Maha%20Magh%20Snan%202026%20pilgrimage%20packages%20and%20snan%20assistance%20at%20Triveni%20Sangam."
             target="_blank"
             rel="noopener noreferrer"
             className="text-white"
           >
             <i className="fa fa-whatsapp" />
           </a>
-             </div>
         </div>
+      </div>
 
-       
-
-        {(showPrivacy || showTerms || cancellationPolicy) && (
+      {(showPrivacy || showTerms || cancellationPolicy) && (
         <div
           className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-100"
           onClick={() => {
@@ -173,56 +170,52 @@ export default function Footer({ onHome, onPackages }) {
               {showPrivacy && (
                 <>
                   <p className="mb-3">
-                    We are committed to protecting your privacy and maintaining
-                    the highest standards of data security across all
-                    interactions on our platform. Personal information collected
-                    may include your name, contact details, communication
-                    records, booking preferences, and transactional information
-                    shared during the payment process.
+                    We are committed to safeguarding your privacy and
+                    maintaining the highest standards of data protection. The
+                    personal information collected through our website may
+                    include your name, contact details, booking preferences, and
+                    communication records shared during enquiries or
+                    transactions.
                   </p>
 
                   <p className="mb-3">
-                    This information is collected solely for the purpose of
-                    booking management, traveller assistance, service delivery,
-                    compliance, payment processing, and customer support. We do
-                    not sell, rent, or misuse your information for any
-                    unauthorised activity.
+                    Your information is used solely for booking management,
+                    customer communication, traveller assistance, payment
+                    processing, and service fulfilment. We do not sell, rent,
+                    trade, or misuse customer data for unauthorised activities.
                   </p>
 
                   <p className="mb-3">
-                    Payments on our platform are processed securely through our
-                    payment partner Razorpay. During the transaction, certain
-                    required information may be shared with Razorpay such as
-                    your name, contact number, email address, and transaction
-                    details for the purpose of completing and validating the
-                    payment. Razorpay may also collect device, network, and
-                    payment-related metadata as part of their fraud-prevention &
-                    security framework.
+                    Payments are securely processed through our authorised
+                    payment partner Razorpay. During payment, limited
+                    information such as your name, email, phone number, and
+                    transaction details may be securely shared for verification
+                    and settlement purposes as part of their fraud-prevention
+                    and compliance framework.
                   </p>
 
                   <p className="mb-3">
-                    All sensitive data is encrypted and handled through secure,
-                    PCI-DSS-compliant infrastructure. We do not store your card
-                    details on our servers at any point in time.
+                    Sensitive payment data is encrypted and handled in a
+                    PCI-DSS-compliant environment. We do not store your debit or
+                    credit card details on our servers at any time.
                   </p>
 
                   <p className="mb-3">
-                    Access to customer information is restricted to authorised
-                    personnel only, strictly on a need-to-know basis, and
-                    governed by internal controls and confidentiality protocols.
+                    Access to customer data is strictly role-based and limited
+                    to authorised personnel only. Internal confidentiality
+                    protocols and governance standards are followed at all
+                    times.
                   </p>
 
                   <p className="mb-3">
-                    By engaging with our website, submitting a booking request,
-                    or completing a transaction, you provide consent for the
-                    lawful collection and secure processing of your information
-                    in line with this privacy framework.
+                    By accessing our website, submitting a query, or proceeding
+                    with a booking, you consent to the lawful use of your
+                    information in accordance with this Privacy Policy.
                   </p>
 
                   <p>
-                    For any clarification, data-access request, or
-                    privacy-related concern, you may reach out to our support
-                    team at:
+                    For any privacy-related queries or data-access requests,
+                    please write to us at:
                     <br />
                     <strong>ananthatourism@gmail.com</strong>
                   </p>
@@ -232,110 +225,112 @@ export default function Footer({ onHome, onPackages }) {
               {showTerms && (
                 <>
                   <p className="mb-3">
-                    All bookings, digital service requests, and payment
-                    transactions made through our platform are governed by our
-                    commercial service framework. Pricing, package inclusions,
-                    exclusions, government taxes, and applicable cancellation
-                    rules will be communicated transparently prior to confirming
-                    a booking or initiating payment.
+                    All bookings, ritual service requests, and payment
+                    transactions made through this platform are governed by the
+                    policies outlined herein. Package inclusions, exclusions,
+                    taxes, pricing, and cancellation rules will be clearly
+                    communicated prior to confirmation.
                   </p>
 
                   <p className="mb-3">
-                    Customers are responsible for reviewing itinerary details,
-                    eligibility requirements, personal documentation, health &
-                    travel advisories, and payment milestones prior to
-                    confirming participation in any pilgrimage, ritual service,
-                    or travel experience.
+                    Travellers are responsible for reviewing itinerary details,
+                    advisories, eligibility requirements, and documentation
+                    prior to participation in any pilgrimage or associated
+                    services.
                   </p>
 
                   <p className="mb-3">
-                    Payments processed via our website are securely handled
-                    through our authorised payment partner Razorpay. By
-                    proceeding with a payment, you acknowledge and agree that
-                    Razorpay may securely process transaction information for
-                    authentication, settlement, fraud-prevention, and compliance
-                    purposes. We do not store card data on our servers.
+                    Payments processed through our platform are handled securely
+                    via Razorpay. By proceeding with a payment, you agree that
+                    Razorpay may securely process your transaction for
+                    authentication, settlement, and compliance purposes. We do
+                    not store card details on our servers.
                   </p>
 
                   <p className="mb-3">
                     Operational adjustments may occasionally be required due to
-                    weather conditions, regulatory advisories, religious
-                    calendars, crowd-control mandates, security guidelines, or
-                    logistical constraints. Where this occurs, our team will
-                    endeavour to minimise service disruption and structure
-                    commercially reasonable alternatives.
+                    regulatory advisories, crowd-control measures, weather
+                    conditions, religious calendar updates, or logistical
+                    constraints. Where required, our team will endeavour to
+                    offer suitable alternatives.
                   </p>
 
                   <p className="mb-3">
-                    In the event of cancellations, amendments, or refunds,
-                    applicable charges and eligibility will be governed strictly
-                    as per the published policy at the time of booking. Refunds,
-                    if approved, will be processed through the original mode of
-                    payment in accordance with banking timelines.
+                    Cancellations and refunds shall be governed strictly as per
+                    the applicable policy at the time of booking. Approved
+                    refunds will be processed through the original mode of
+                    payment subject to banking timelines.
                   </p>
 
                   <p className="mb-3">
-                    Misuse of the platform, fraudulent activity, chargeback
-                    abuse, or breach of terms may result in cancellation of
-                    services without liability.
+                    Any fraudulent activity, misuse, or violation of policy may
+                    result in service denial or cancellation without liability.
                   </p>
 
                   <p>
-                    By accessing our platform, submitting a booking request, or
-                    completing a payment, you confirm your acceptance of these
-                    Terms & Conditions and agree to abide by the policies that
-                    govern our service delivery model.
+                    By submitting a booking request or completing a transaction,
+                    you confirm acceptance of these Terms & Conditions.
                   </p>
                 </>
               )}
 
-             {cancellationPolicy && (
-  <>
-    <h3 className="font-semibold mb-2">Cancellation Policy</h3>
+              {cancellationPolicy && (
+                <>
+                  <h3 className="font-semibold mb-2">Cancellation Policy</h3>
 
-    <p className="mb-3">
-      Cancellation requests must be formally submitted via email.
-    </p>
+                  <p className="mb-3">
+                    All cancellation requests must be formally submitted via
+                    email.
+                  </p>
 
-    <ul className="list-disc pl-5 mb-3 space-y-1">
-      <li>30 – 07 days prior to departure: 10% of the package cost will be charged.</li>
-      <li>07 – 02 days prior to departure: 25% of the package cost will be charged.</li>
-      <li>Within 48 hours of departure / No Show: 100% of the package cost will be charged.</li>
-      <li>
-        Peak Season (Apr 15 – Jun 15, 10 days during Dasara, 10 days during Diwali,
-        and 15 days during Christmas &amp; New Year): cancellations within 7 days are
-        non-refundable as hotels typically require full advance payment.
-      </li>
-      <li>
-        While the above rules govern cancellations, we will make best-effort attempts
-        to minimize applicable charges.
-      </li>
-    </ul>
+                  <ul className="list-disc pl-5 mb-3 space-y-1">
+                    <li>
+                      30–07 days prior to departure: 10% of the package cost
+                    </li>
+                    <li>
+                      07–02 days prior to departure: 25% of the package cost
+                    </li>
+                    <li>
+                      Within 48 hours of departure or No-Show: 100% of the
+                      package cost
+                    </li>
+                    <li>
+                      Peak Season (15 Apr–15 Jun, Dasara 10 days, Diwali 10
+                      days, Christmas & New Year 15 days): cancellations within
+                      7 days are non-refundable due to advance hotel settlement
+                      requirements.
+                    </li>
+                    <li>
+                      While the above policies apply, we will always make
+                      reasonable efforts to minimise financial impact wherever
+                      possible.
+                    </li>
+                  </ul>
 
-    <p className="mb-3 font-semibold">
-      All disputes are subject to Bangalore jurisdiction.
-    </p>
+                  <p className="mb-3 font-semibold">
+                    All disputes are subject to Bengaluru jurisdiction.
+                  </p>
 
-    <p className="mb-2 font-semibold">Important Notes:</p>
-    <ul className="list-disc pl-5 mb-3 space-y-1">
-      <li>
-        Any costs arising from natural calamities, road blockages, political
-        disturbances, etc., are to be borne directly by the guest and paid on the spot.
-      </li>
-      <li>
-        Any additional services requested beyond the agreed scope will be chargeable.
-        No changes or cancellations will be made to the travel itinerary within 7 days
-        of the tour; if enforced, such changes will incur additional costs on actuals.
-      </li>
-    </ul>
-  </>
-)}
+                  <p className="mb-2 font-semibold">Important Notes:</p>
 
-
+                  <ul className="list-disc pl-5 mb-3 space-y-1">
+                    <li>
+                      Any costs arising from natural events, strikes, road
+                      closures, or other external disruptions must be borne
+                      directly by the traveller.
+                    </li>
+                    <li>
+                      Any additional services requested beyond the agreed scope
+                      will be chargeable. Changes requested within 7 days of
+                      travel may incur additional costs.
+                    </li>
+                  </ul>
+                </>
+              )}
             </div>
           </div>
         </div>
-        )}
+      )}
     </footer>
   );
 }
