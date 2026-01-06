@@ -93,7 +93,8 @@ export default function Hero() {
         >
           <img
             src={slide.image}
-            alt={slide.title + ' — Maha Magh Snan 2026 Prayagraj'}
+             loading="lazy"
+            alt={slide.title + ' Maha Magh Snan 2026 Prayagraj'}
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-linear-to-b from-black/10 via-black/20 to-black/10"></div>

@@ -356,33 +356,12 @@ export default function Packages() {
             >
               <div className="flex h-full flex-col overflow-hidden rounded-xl bg-white shadow-lg transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl">
                 {/* Image */}
-                {/* <div className="relative overflow-hidden">
-                  <img
-                    src={pkg.image}
-                    alt={pkg.destination}
-                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
-
-                  <div className="absolute inset-0 bg-linear-to-t from-[#00000089] via-transparent to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
-
-                  {pkg.badge && (
-                    <span className="absolute right-4 top-4 rounded-full bg-[#CF9F3B] px-3 py-1 text-xs font-bold text-gray-900 shadow-lg">
-                      ⭐ {pkg.badge}
-                    </span>
-                  )}
-
-                  {pkg.flightIncluded && (
-                    <span className="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1 text-[10px] font-bold text-[#3F2455] shadow">
-                      ✈️ Flights Included
-                    </span>
-                  )}
-                </div> */}
               <div className="relative overflow-hidden">
-  {(() => {
-    const images = Array.isArray(pkg.image) ? pkg.image : [pkg.image];
-    const [index, setIndex] = useState(0);
+              {(() => {
+                const images = Array.isArray(pkg.image) ? pkg.image : [pkg.image];
+                const [index, setIndex] = useState(0);
 
-    useEffect(() => {
+             useEffect(() => {
       if (!images.length) return;
       const interval = setInterval(() => {
         setIndex(prev => (prev + 1) % images.length);

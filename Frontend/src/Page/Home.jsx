@@ -5,10 +5,10 @@ import Packages from "../Components/Packages"
 import Header from "../Components/Header"
 import Footer from "../Components/Footer"
 import WhyChooseUs from "../Components/WhyChooseUs"
-import SnanDates from "../Components/SnanDates"
 import SpiritualSignificance from "../Components/SpiritualSignificance"
 import MarqueeSilder from "../Components/MarqueeSilder"
 import MaghMelaSchedule from "../Components/MaghMelaSchedule"
+import FAQSection from "../Components/FAQSection"
 
 
 
@@ -40,10 +40,10 @@ const Home = () => {
        <div ref={packagesRef}>
           <Packages />
        </div>
-        {/* <SnanDates/> */}
          <MaghMelaSchedule/>
         <SpiritualSignificance/>
         <WhyChooseUs/>
+        <FAQSection/>
         <Footer
        onHome={() => scrollTo(homeRef)}
         onPackages={() => scrollTo(packagesRef)}
