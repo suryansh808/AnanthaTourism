@@ -293,7 +293,7 @@ export default function Packages() {
         error: function (err) {
           console.error("Razorpay Failure:", err);
           toast.error("Payment failed. Please try again.");
-          closeForm;
+          closeForm();
         },
 
         // 🚪 USER CLOSED CHECKOUT WITHOUT PAYING
